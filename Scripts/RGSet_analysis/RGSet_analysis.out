@@ -1,0 +1,86 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Tue Oct 26 09:00:50 2021
+
+
+##################################################################
+####                 ANALYSIS OF RGSET OBJECT                 ####
+##################################################################
+
+Loading minfi package...
+minfi package loaded successfully!
+
+Loading data from projects folder
+###################################
+
+
+Data loaded successfully!
+
+This is the phenotypic data associated with the RGSet object
+ [1] "sample_name"  "sample_id"    "sample_well"  "sample_plate" "sample_group"
+ [6] "pool_id"      "sexe"         "edad"         "fuma"         "PA"          
+[11] "BMI"          "imta_lrbul"   "imta_lrica"   "imta_lrcca"   "imtm_lrbul"  
+[16] "imtm_lrica"   "imtm_lrcca"   "proceden_b"   "itbdret"      "itbesquerra" 
+[21] "itbdret2"     "itbesquerra2" "itbvalor"     "itbvalor_cat" "itbmean"     
+[26] "itbmean_cat"  "Array"        "Slide"        "Basename"     "filenames"   
+
+
+The manifest object contains the probe design information of the array:
+IlluminaMethylationManifest object
+Annotation
+  array: IlluminaHumanMethylation450k
+Number of type I probes: 135476 
+Number of type II probes: 350036 
+Number of control probes: 850 
+Number of SNP type I probes: 25 
+Number of SNP type II probes: 40 
+
+
+DataFrame with 6 rows and 8 columns
+         Name    AddressA    AddressB       Color       NextBase
+  <character> <character> <character> <character> <DNAStringSet>
+1  cg00050873    32735311    31717405         Red              A
+2  cg00212031    29674443    38703326         Red              T
+3  cg00213748    30703409    36767301         Red              A
+4  cg00214611    69792329    46723459         Red              A
+5  cg00455876    27653438    69732350         Red              A
+6  cg01707559    45652402    64689504         Red              A
+                ProbeSeqA               ProbeSeqB      nCpG
+           <DNAStringSet>          <DNAStringSet> <integer>
+1 ACAAAAAAAC...ATAAACCCCA ACGAAAAAAC...ATAAACCCCG         2
+2 CCCAATTAAC...AAAACATACA CCCAATTAAC...AAAACGTACG         4
+3 TTTTAACACC...AAAAAAAACA TTTTAACGCC...AAAAAAAACG         3
+4 CTAACTTCCA...AACACAAACA CTAACTTCCG...AACGCGAACG         5
+5 AACTCTAAAC...AAAAAACTCA AACTCTAAAC...AAAAAACTCG         2
+6 ACAAATTAAA...ACAAAAAACA GCGAATTAAA...ACAAAAAACG         6
+
+
+Quality control
+###################################
+
+
+Getting methylated intensities matrix...
+           8963311030_R05C01 8963311030_R06C01 8963311030_R01C02
+cg00050873             15208               491               241
+cg00212031               190               278               177
+cg00213748              2676               241               376
+cg00214611               360               320               222
+cg00455876              4285               307               154
+cg01707559               877               634               879
+646
+Column number 1...
+
+
+Getting unmethylated intensities matrix...
+           8963311030_R05C01 8963311030_R06C01 8963311030_R01C02
+cg00050873              2411               155                95
+cg00212031              4596               274               221
+cg00213748               374               291               295
+cg00214611              6703               204               140
+cg00455876              1596               786               532
+cg01707559              7549              1301              1241
+
+Column number 2...
+646
+
+Getting quality control plots...
+
