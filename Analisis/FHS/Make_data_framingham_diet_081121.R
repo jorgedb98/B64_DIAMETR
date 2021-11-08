@@ -40,16 +40,15 @@ library(psych)
 ### We have to download again the FFQ dataset from dbgap because some variables were missing
 ################### 
 rm(list=ls())
-setwd("C:/Users/classale/OneDrive/DIAMETR")
-dades<-read.table("./data/FHS/phs000007.v32.pht000682.v7.p13.c1.ffreq1_7s.HMB-IRB-MDS.txt",header=T,sep="\t",quote="",stringsAsFactors=F)
+dades<-read.table("U:/Estudis/B64_DIAMETR/Dades/FHS/phs000007.v32.pht000682.v7.p13.c1.ffreq1_7s.HMB-IRB-MDS.txt",header=T,sep="\t",quote="",stringsAsFactors=F)
 # list of foods for loop
 foods <- c(names(dades)[43:173])
 
 summary(dades$NUT_K)
 
 # We load the phenotype dataset found on the cluster in projects/regicor/data/FHS/phenotype
-# load("U:/Estudis/B64_DIAMETR/Dades/FHS/pheno_FHS_analysis.RData")
-load("./data/FHS/pheno_FHS_analysis.RData")
+load("U:/Estudis/B64_DIAMETR/Dades/FHS/pheno_FHS_analysis.RData")
+
 
 
 small_dades<-as.data.frame(c(dades[,2]))
@@ -657,7 +656,7 @@ pheno_fhs$mmds_alcoholf <- as.factor(pheno_fhs$mmds_alcohol)
 vars05<-c("mmds_wgrainf","mmds_fishf","mmds_meatf","mmds_vegf","mmds_fruitf","mmds_nutf","mmds_legumef","mmds_mufasfaf","mmds_alcoholf","mmds")
 tab <-CreateTableOne(vars05,strata="sex",data=pheno_fhs)
 try<-print(tab,  noSpaces = TRUE)
-write.table(try,file="./analysis/output/FHS/mmdsy_sex_29102021.csv",sep=",")
+
 
 
 ######################################################################################################
@@ -1014,5 +1013,5 @@ foodvar2<-c(foodvar,"NUT_CALOR","mds_cereal","mds_fish","mds_meat","mds_veg","md
                                       "hpdi_anifat","hpdi_dairy","hpdi_egg","hpdi_fish","hpdi_meat","hpdi")
 phenofood_fhs<-pheno_fhs[,..foodvar2]
 
-save(phenofood_fhs,file="./data/FHS/phenofood_fhs.RData")
+save(phenofood_fhs,file="U:/Estudis/B64_DIAMETR/Dades/FHS/phenofood_fhs.RData")
 
