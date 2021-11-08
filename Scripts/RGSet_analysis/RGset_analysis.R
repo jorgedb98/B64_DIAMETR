@@ -139,3 +139,40 @@ cat("\nSaving DMPs...\n")
 save(dmp, file = "/home/jdominguez1/B64_DIAMETR/Scripts/RGSet_analysis/results/DMPs.RData")
 
 cat("\nAnalysis finished on ", date(),"\n")
+
+# rm(list=ls())
+# 
+# library(minfi)
+# library(wateRmelon)
+# library(RnBeads)
+# library(IlluminaHumanMethylationEPICmanifest)
+# 
+# print("MethylSet from Minfi")
+# epic1 <- load("/projects/regicor/METIAM/EPIC/QC/singularity/n416_repes/4.sex/metiam_391_Methylset.RData")
+# epic1 <- get(epic1)
+# epic2 <- load("/projects/regicor/data/REGICOR/methylation/epic2/qc/2.pfilter/metiam_pf_208.RData")
+# epic2 <- get(epic2)
+# 
+# pheno <- read.table("/projects/regicor/diabetes_wided/db_epic.csv", header=T, stringsAsFactors = F, sep=";")
+# 
+# epic1 <- epic1[,which(epic1@colData@rownames%in%pheno$Slide)]
+# epic2 <- epic2[,which(epic2@colData@rownames%in%pheno$Slide)]
+# 
+# epic1 <- epic1[which(names(epic1)%in%names(epic2)),]            #810793
+# epic2 <- epic2[which(names(epic2)%in%names(epic1)),]
+# 
+# epic <- combineArrays(epic1, epic2, outType="IlluminaHumanMethylationEPIC")
+# save(epic, file="/projects/regicor/data/REGICOR/methylation/methylset_epics12_controls.RData")
+# 
+# print("methylumi")
+# methylumi <- as.methylumi(epic)
+# 
+# print("Dasen_normalization_wateRmelon")
+# norm_dasen <- dasen(methylumi)
+# 
+# print("Betas Dasen ")
+# betas_dasen <- norm_dasen@assayData$betas
+# betas_dasen <- t(betas_dasen)
+# save(betas_dasen, file="/projects/regicor/data/REGICOR/methylation/betas_dasen_epics12_controls.RData")
+# 
+# print("end")
