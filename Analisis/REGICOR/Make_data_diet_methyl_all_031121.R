@@ -661,8 +661,9 @@ try<-print(tab,  noSpaces = TRUE)
 
 
 ######################################################################################################
-#############   4. WHO HDI       #########
+#############   4. WHO HDI 2015      #########
 ######################################################################################################
+# Kanauchi M, Kanauchi K. Prev Med Rep. 2018;12:198-202. doi:10.1016/j.pmedr.2018.09.011
 
 metildiet$kcal_exalc_b <-with(metildiet,kcal_b-ethanol_b*7) #Energy excluding alcohol
 metildiet$p_sfa_b <-with(metildiet,900*saturada_b/kcal_exalc_b)
@@ -671,27 +672,38 @@ metildiet$p_prot_b <-with(metildiet,400*proteina_b/kcal_exalc_b)
 metildiet$p_sug_b <-with(metildiet,400*sugar_b/kcal_exalc_b) 
 metildiet$fruitveg_b <-with(metildiet,fruit_b+veg_b)
 
+metildiet$p_carb_b <-with(metildiet,400*cho_b/kcal_exalc_b)
+metildiet$p_fat_b <-with(metildiet,900*grasa_b/kcal_exalc_b)
+summary(metildiet$p_fat_b)
+summary(metildiet$p_prot_b)
+summary(metildiet$potasio_b)
+
 
 # Components
 metildiet$hdi_sfa_b <-with(metildiet,ifelse(p_sfa_b<10,1,0),na.rm=T)
 metildiet$hdi_sugar_b<-with(metildiet,ifelse(p_sug_b<10,1,0),na.rm=T)
-metildiet$hdi_pufa_b <-with(metildiet,ifelse((p_pufa_b<=10 & p_pufa_b>=6),1,0),na.rm=T)
-metildiet$hdi_prot_b <-with(metildiet,ifelse((p_prot_b<=15 & p_prot_b>=10),1,0),na.rm=T)
-metildiet$hdi_chol_b <-with(metildiet,ifelse(choleste_b<300,1,0),na.rm=T)
+metildiet$hdi_pufa_b <-with(metildiet,ifelse((p_pufa_b<=11 & p_pufa_b>=6),1,0),na.rm=T)
+metildiet$hdi_fat_b <-with(metildiet,ifelse(p_fat_b<30,1,0),na.rm=T)
+metildiet$hdi_k_b <-with(metildiet,ifelse(potasio_b>=3500,1,0),na.rm=T)
 metildiet$hdi_fv_b <-with(metildiet,ifelse(fruitveg_b>=400,1,0),na.rm=T)
-metildiet$hdi_fib_b <-with(metildiet,ifelse(fibra_b>25,1,0),na.rm=T)
+metildiet$hdi_fib_b <-with(metildiet,ifelse(fibra_b>=25,1,0),na.rm=T)
+
+
+
 
 # We check that it was done correctly
 metildiet %>%   group_by(hdi_sfa_b) %>% 
   summarise(min=min(p_sfa_b, na.rm=T), 
             max=max(p_sfa_b, na.rm=T))
-metildiet %>%   group_by(hdi_prot_b) %>% 
-  summarise(min=min(p_prot_b, na.rm=T), 
-            max=max(p_prot_b, na.rm=T))
-
+metildiet %>%   group_by(hdi_k_b) %>% 
+  summarise(min=min(potasio_b, na.rm=T), 
+            max=max(potasio_b, na.rm=T))
+metildiet %>%   group_by(hdi_pufa_b) %>% 
+  summarise(min=min(p_pufa_b, na.rm=T), 
+            max=max(p_pufa_b, na.rm=T))
 
 # Score HDI total
-metildiet$hdi_b <-with(metildiet,hdi_sfa_b+hdi_pufa_b+hdi_sugar_b+hdi_prot_b+hdi_chol_b+hdi_fv_b+hdi_fib_b)
+metildiet$hdi2015_b <-with(metildiet,hdi_sfa_b+hdi_pufa_b+hdi_sugar_b+hdi_fat_b+hdi_k_b+hdi_fv_b+hdi_fib_b)
 
 
 table(metildiet$hdi_b, useNA = "always")
@@ -699,14 +711,14 @@ histogram(metildiet$hdi_b)
 mean(metildiet$hdi_b,na.rm=T)
 
 # Convert in factor for table one
-vars07<-c("hdi_sfa_b","hdi_pufa_b","hdi_sugar_b","hdi_prot_b","hdi_chol_b","hdi_fv_b","hdi_fib_b")
-vars07f<-c("hdi_sfa_bf","hdi_pufa_bf","hdi_sugar_bf","hdi_prot_bf","hdi_chol_bf","hdi_fv_bf","hdi_fib_bf")
+vars07<-c("hdi_sfa_b","hdi_pufa_b","hdi_sugar_b","hdi_fat_b","hdi_k_b","hdi_fv_b","hdi_fib_b")
+vars07f<-c("hdi_sfa_bf","hdi_pufa_bf","hdi_sugar_bf","hdi_fat_bf","hdi_k_bf","hdi_fv_bf","hdi_fib_bf")
 for(i in 1:length(vars07))
   
 {
   metildiet[,vars07f[i]]<-as.factor(metildiet[,vars07[i]])
 }
-vars07<-c("hdi_sfa_bf","hdi_pufa_bf","hdi_sugar_bf","hdi_prot_bf","hdi_chol_bf","hdi_fv_bf","hdi_fib_bf","hdi_b")
+vars07<-c("hdi_sfa_bf","hdi_pufa_bf","hdi_sugar_bf","hdi_fat_bf","hdi_k_bf","hdi_fv_bf","hdi_fib_bf","hdi2015_b")
 
 tab <-CreateTableOne(vars07,strata="sexe",data=metildiet)
 try<-print(tab,  noSpaces = TRUE)
