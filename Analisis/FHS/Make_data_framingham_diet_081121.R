@@ -45,6 +45,12 @@ dades<-read.table("U:/Estudis/B64_DIAMETR/Dades/FHS/phs000007.v32.pht000682.v7.p
 foods <- c(names(dades)[43:173])
 
 summary(dades$NUT_K)
+table(dades$FFQ_VAL)
+table(dades$BLNKSF)
+# The data is already cleaned: only the 2430 participants with a valid FFQ.
+# Definition of valid: VALIDITY MARKER FOR FFQ BASED ON A CALORIE MINIMUM AND MAXIMUM AND NUMBER OF BLANKS (13). 
+# MEN: LESS THAN 13 BLANKS ON FFQ AND CALORIES (NUT_CALOR) BETWEEN 600 - 4199. 
+# WOMEN: LESS THAN 13 BLANKS ON FFQ AND CALORIES (NUT_CALOR) BETWEEN 600 - 3999.
 
 # We load the phenotype dataset found on the cluster in projects/regicor/data/FHS/phenotype
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/pheno_FHS_analysis.RData")
