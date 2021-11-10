@@ -38,3 +38,16 @@ cat("\nepic1 is a MethylSet object\n")
 epic2 <- loadRData("metiam_data_ext_208.RData")
 epic2_f <- colData(epic2)[colData(epic2)$Sample_Name %in% regicor_ids$Sample_ID,]
 cat("\nepic2 is a RGSet object\n")
+cat("\n\n\n")
+
+cat("####################################################\n")
+cat("####          Getting MSet from RGSet           ####\n")
+cat("####################################################\n")
+
+epic2_mset <- preprocessRaw(epic2) 
+
+cat("\nFor normalization, dasen will be applied\n")
+dasen(epic1_f,fudge=100,ret2=FALSE)
+cat("Dasen done in epic1\n")
+dasen(epic2_mset, fudge=100,ret2=FALSE)
+cat("Dasen done in epic2\n")
