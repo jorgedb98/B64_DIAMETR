@@ -87,20 +87,25 @@ summary(metildiet$fupy)
 ############################################################################
 ###### Exclusion of energy under and over reporters: 
 
-# Women: <500 kcal or >3500 kcal
-# Men: <800 kcal or >4000 kcal
+# Initially we used
+# Women: <600 kcal or >=3500 kcal
+# Men: <800 kcal or >=4000 kcal
+
+# Modification of 10 Nov 2021 
+# Less strict: we apply Framingham's validity criteria 600 - 4200 kcal for men, 600 - 4000 kcal for women
+summary(metildiet$kcal_b)
 
 metildiet$kcal_b<-as.numeric(with(metildiet,ifelse(sexe==0,
-                                             ifelse(kcal_b<800,NA,metildiet$kcal_b),
-                                             ifelse(kcal_b<500,NA,metildiet$kcal_b))))
+                                             ifelse(kcal_b<600,NA,metildiet$kcal_b),
+                                             ifelse(kcal_b<600,NA,metildiet$kcal_b))))
 metildiet$kcal_b<-as.numeric(with(metildiet,ifelse(sexe==0,
-                                             ifelse(kcal_b>4000,NA,metildiet$kcal_b),
-                                             ifelse(kcal_b>3500,NA,metildiet$kcal_b))))
+                                             ifelse(kcal_b>=4200,NA,metildiet$kcal_b),
+                                             ifelse(kcal_b>=4000,NA,metildiet$kcal_b))))
 boxplot.stats(metildiet$kcal_b)$out
 boxplot(metildiet$kcal_b)
 summary(metildiet$kcal_b)
-#  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-# 739.7  1933.3  2333.3  2364.7  2809.3  3979.1      72 
+#     Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#    602.2  1947.9  2379.9  2420.4  2858.9  4198.1     305 
 
 
 metildiet %>% group_by(sexe) %>% 
