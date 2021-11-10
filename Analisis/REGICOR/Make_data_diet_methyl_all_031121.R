@@ -670,15 +670,16 @@ try<-print(tab,  noSpaces = TRUE)
 ######################################################################################################
 # Kanauchi M, Kanauchi K. Prev Med Rep. 2018;12:198-202. doi:10.1016/j.pmedr.2018.09.011
 
-metildiet$kcal_exalc_b <-with(metildiet,kcal_b-ethanol_b*7) #Energy excluding alcohol
-metildiet$p_sfa_b <-with(metildiet,900*saturada_b/kcal_exalc_b)
-metildiet$p_pufa_b <-with(metildiet,900*poliinsa_b/kcal_exalc_b)
-metildiet$p_prot_b <-with(metildiet,400*proteina_b/kcal_exalc_b)
-metildiet$p_sug_b <-with(metildiet,400*sugar_b/kcal_exalc_b) 
+# Not anymore in this version of the score we use total energy intake
+# metildiet$kcal_exalc_b <-with(metildiet,kcal_b-ethanol_b*7) #Energy excluding alcohol
+metildiet$p_sfa_b <-with(metildiet,900*saturada_b/kcal_b)
+metildiet$p_pufa_b <-with(metildiet,900*poliinsa_b/kcal_b)
+metildiet$p_prot_b <-with(metildiet,400*proteina_b/kcal_b)
+metildiet$p_sug_b <-with(metildiet,400*sugar_b/kcal_b) 
 metildiet$fruitveg_b <-with(metildiet,fruit_b+veg_b)
 
-metildiet$p_carb_b <-with(metildiet,400*cho_b/kcal_exalc_b)
-metildiet$p_fat_b <-with(metildiet,900*grasa_b/kcal_exalc_b)
+metildiet$p_carb_b <-with(metildiet,400*cho_b/kcal_b)
+metildiet$p_fat_b <-with(metildiet,900*grasa_b/kcal_b)
 summary(metildiet$p_fat_b)
 summary(metildiet$p_prot_b)
 summary(metildiet$potasio_b)
