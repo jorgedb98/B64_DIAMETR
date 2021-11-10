@@ -45,6 +45,12 @@ dades<-read.table("U:/Estudis/B64_DIAMETR/Dades/FHS/phs000007.v32.pht000682.v7.p
 foods <- c(names(dades)[43:173])
 
 summary(dades$NUT_K)
+table(dades$FFQ_VAL)
+table(dades$BLNKSF)
+# The data is already cleaned: only the 2430 participants with a valid FFQ.
+# Definition of valid: VALIDITY MARKER FOR FFQ BASED ON A CALORIE MINIMUM AND MAXIMUM AND NUMBER OF BLANKS (13). 
+# MEN: LESS THAN 13 BLANKS ON FFQ AND CALORIES (NUT_CALOR) BETWEEN 600 - 4199. 
+# WOMEN: LESS THAN 13 BLANKS ON FFQ AND CALORIES (NUT_CALOR) BETWEEN 600 - 3999.
 
 # We load the phenotype dataset found on the cluster in projects/regicor/data/FHS/phenotype
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/pheno_FHS_analysis.RData")
@@ -770,14 +776,15 @@ pheno_fhs$NUT_FAT3<-pheno_fhs$NUT_FATEAT+pheno_fhs$NUT_VFAT
 summary(pheno_fhs$NUT_FAT)
 summary(pheno_fhs$NUT_FAT2) # we keep this definition of fat: saturated + poly + mono unsaturated
 summary(pheno_fhs$NUT_FAT3)
-pheno_fhs$kcal_exalc <-with(pheno_fhs,NUT_CALOR-ethanol*7) #Energy excluding alcohol
-pheno_fhs$p_sfa <-with(pheno_fhs,900*NUT_MONFAT/kcal_exalc)
-pheno_fhs$p_pufa <-with(pheno_fhs,900*NUT_POLY/kcal_exalc)
-pheno_fhs$p_prot <-with(pheno_fhs,400*NUT_PROT/kcal_exalc)
-pheno_fhs$p_carb <-with(pheno_fhs,400*NUT_CARBO/kcal_exalc)
-pheno_fhs$p_fat <-with(pheno_fhs,900*NUT_FAT2/kcal_exalc)
+#pheno_fhs$kcal_exalc <-with(pheno_fhs,NUT_CALOR-ethanol*7) #Energy excluding alcohol: Not in the new version of HDI
+
+pheno_fhs$p_sfa <-with(pheno_fhs,900*NUT_SATFAT/NUT_CALOR)
+pheno_fhs$p_pufa <-with(pheno_fhs,900*NUT_POLY/NUT_CALOR)
+pheno_fhs$p_prot <-with(pheno_fhs,400*NUT_PROT/NUT_CALOR)
+pheno_fhs$p_carb <-with(pheno_fhs,400*NUT_CARBO/NUT_CALOR)
+pheno_fhs$p_fat <-with(pheno_fhs,900*NUT_FAT2/NUT_CALOR)
 pheno_fhs$sugar <-with(pheno_fhs,NUT_FRUCT+NUT_SUCR +NUT_LACT) #sucrose, fructose and lactose
-pheno_fhs$p_sug <-with(pheno_fhs,400*sugar/kcal_exalc) 
+pheno_fhs$p_sug <-with(pheno_fhs,400*sugar/NUT_CALOR) 
 pheno_fhs$fruitveg <-with(pheno_fhs,fruit+veg)
 
 summary(pheno_fhs$p_fat)
