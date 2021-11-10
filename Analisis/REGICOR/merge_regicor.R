@@ -301,4 +301,10 @@ names(metildiet_study)
 # [49] "geaf_mod_b"    "geaf_lig_b"    "itbdret_b"     "mds_b"         "mmds_b"        "rmed_b"       
 # [55] "hdi_b"         "dashf_b"       "hpdi_b"  
 
+# DEvide into pool_Id for analysis
+metildiet_study_450 <- metildiet_study[metildiet_study$Pool_ID=="450K",]
+metildiet_study_epic <- metildiet_study[metildiet_study$Pool_ID=="EPIC",]
+
 save(metildiet_study, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars.RData")
+save(metildiet_study_450, file="U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_450.RData")
+save(metildiet_study_epic, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_epic.RData")
