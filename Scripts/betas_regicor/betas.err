@@ -1,0 +1,4 @@
+Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function ‘getBeta’ for signature ‘"character"’
+Calls: getBeta -> <Anonymous>
+Execution halted
