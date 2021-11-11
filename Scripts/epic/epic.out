@@ -1,0 +1,30 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Thu Nov 11 13:19:50 2021
+
+
+##################################################################
+####            ANALYSIS OF RGSET OBJECT FOR epic1            ####
+####                 AND METHYLSET FOR epic2                  ####
+##################################################################
+
+Packages loaded successfully...
+
+REGICOR ids loaded successfully...
+
+epic1 is a MethylSet object
+
+epic2 is a RGSet object
+
+
+
+####################################################
+####          Getting MSet from RGSet           ####
+####################################################
+
+For normalization, dasen will be applied
+
+Dasen done in epic1
+
+Dasen done in epic2
+
+Saving dasen objects...

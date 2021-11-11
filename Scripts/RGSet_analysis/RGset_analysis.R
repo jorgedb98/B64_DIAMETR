@@ -28,16 +28,16 @@ loadRData <- function(fileName){
   load(fileName)
   get(ls()[ls() != "fileName"])
 }
-betas_regicor450 <- loadRData(fileName = "/projects/regicor/data/REGICOR/methylation/450k/RGChannelSetExtended/RGset_updated.RData")
+regicor_RGSet <- loadRData(fileName = "/projects/regicor/data/REGICOR/methylation/450k/RGChannelSetExtended/RGset_updated.RData")
 cat("Data loaded successfully!\n\n")
 
 cat("This is the phenotypic data associated with the RGSet object\n")
-phenoData <- pData(betas_regicor450)
+phenoData <- pData(regicor_RGSet)
 colnames(phenoData)
 cat("\n\n")
 
 cat("The manifest object contains the probe design information of the array:\n")
-manifest <- getManifest(betas_regicor450)
+manifest <- getManifest(regicor_RGSet)
 manifest
 cat("\n\n")
 head(getProbeInfo(manifest))
@@ -47,7 +47,7 @@ cat("Quality control\n")
 cat("###################################\n\n\n")
 
 cat("Getting methylated intensities matrix...\n")
-MSet <- preprocessRaw(betas_regicor450) 
+MSet <- preprocessRaw(regicor_RGSet) 
 head(getMeth(MSet)[,1:3])
 cat(ncol(getMeth(MSet)))
 cat("\nColumn number 1...\n")
@@ -82,17 +82,17 @@ garbage <- dev.off()
 
 png(file="/home/jdominguez1/B64_DIAMETR/Scripts/RGSet_analysis/results/strip.png",
     width=600, height=350)
-controlStripPlot(betas_regicor450, controls="BISULFITE CONVERSION II")
+controlStripPlot(regicor_RGSet, controls="BISULFITE CONVERSION II")
 garbage <- dev.off()
 
 cat("Individual plots done!\n\n")
 # cat("Individual plots done! Building pdf report\n\n")
 # 
-# qcReport(betas_regicor450, pdf= "qcReport.pdf")
+# qcReport(regicor_RGSet, pdf= "qcReport.pdf")
 # cat("pdf report done!\n\n")
 
 cat("Getting sex prediction...\n\n")
-GRset <- mapToGenome(betas_regicor450)
+GRset <- mapToGenome(regicor_RGSet)
 estSex <- getSex(GRset, cutoff = -2)
 GRset <- addSex(GRset, sex = estSex)
 
@@ -110,7 +110,7 @@ cat("###################################\n\n\n")
 
 cat("Starting quantile preprocessing...\n\n")
 
-GRset.quantile <- preprocessQuantile(betas_regicor450, fixOutliers = TRUE,
+GRset.quantile <- preprocessQuantile(regicor_RGSet, fixOutliers = TRUE,
                                      removeBadSamples = TRUE, badSampleCutoff = 10.5,
                                      quantileNormalize = TRUE, stratified = TRUE, 
                                      mergeManifest = FALSE, sex = NULL)

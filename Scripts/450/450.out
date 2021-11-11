@@ -1,0 +1,6 @@
+WARNING: ignoring environment value of R_HOME
+[1] "Loading libraries"
+[1] "limma"
+[1] "IlluminaHumanMethylation450kmanifest"
+[1] "IlluminaHumanMethylation450kanno.ilmn12.hg19"
+[1] "Probe-wise differential methylation analysis (DMPs) by LRM"
