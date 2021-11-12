@@ -109,7 +109,7 @@ epic_ids <- epic_ids[,c(1,3,2,4)]
 colnames(epic_ids) <- c("Sample_ID","parti","sample_name","pool_id")
 
 regicor_ids <- rbind(epic_ids, r_fusion)
-save(regicor_ids, file ="/Estudis/B64_DIAMETR/Dades/regicor_ids.RData")
+save(regicor_ids, file ="/Estudis/B64_DIAMETR/Dades/REGICOR/regicor_ids.RData")
 
 #########  #########  #########  #########  #########  #########  #########  #########
 ############################### WHI ############################################
