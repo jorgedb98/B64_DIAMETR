@@ -40,19 +40,23 @@ epic2_f <- colData(epic2)[colData(epic2)$Sample_Name %in% regicor_ids$Sample_ID,
 cat("\nepic2 is a RGSet object\n")
 cat("\n\n\n")
 
-cat("####################################################\n")
-cat("####          Getting MSet from RGSet           ####\n")
-cat("####################################################\n")
+# cat("####################################################\n")
+# cat("####          Getting MSet from RGSet           ####\n")
+# cat("####################################################\n")
 
-epic2_mset <- preprocessRaw(epic2) 
+# epic2_mset <- preprocessRaw(epic2) 
 
 cat("\nFor normalization, dasen will be applied\n")
 epic1_dasen <- dasen(epic1,fudge=100,ret2=FALSE)
 cat("\nDasen done in epic1\n")
-epic2_dasen <- dasen(epic2_mset, fudge=100,ret2=FALSE)
+epic2_dasen <- dasen(epic2, fudge=100,ret2=FALSE)
 cat("\nDasen done in epic2\n")
-
-cat("\nSaving dasen objects...")
+cat("\nThese are the results...\n")
+cat("\nEpic1:\n")
+epic1_dasen
+cat("\n\nEpic2:\n")
+epic2_dasen
+cat("\n\nSaving dasen objects...")
 save(epic1_dasen, file ="/home/jdominguez1/meth/epic1_dasen.RData")
 save(epic2_dasen, file ="/home/jdominguez1/meth/epic2_dasen.RData")
 

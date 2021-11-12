@@ -47,4 +47,8 @@ names(fhs_diet_with_cellsVars) <- c("shareid","CD8T","CD4T","NK","Bcell","Mono",
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/framingham_byFamilyID.RData")
 # framingham_family
 fhs_diet_with_cellsVars_fam <- merge(fhs_diet_with_cellsVars, framingham_family, by="shareid")
+# remove people having NA in scores 
+
+library(tidyr)
+fhs_diet_with_cellsVars_fam <- fhs_diet_with_cellsVars_fam  %>% drop_na(c(mds,mmds,rmed,hdi2015,dashf,hpdi))
 save(fhs_diet_with_cellsVars_fam, file = "U:/Estudis/B64_DIAMETR/Dades/FHS/fhs_diet_cellsVarsFam.RData")

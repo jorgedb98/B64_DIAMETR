@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-Starting analysis on  Thu Nov 11 13:19:50 2021
+Starting analysis on  Fri Nov 12 09:46:42 2021
 
 
 ##################################################################
@@ -17,14 +17,7 @@ epic2 is a RGSet object
 
 
 
-####################################################
-####          Getting MSet from RGSet           ####
-####################################################
 
 For normalization, dasen will be applied
 
 Dasen done in epic1
-
-Dasen done in epic2
-
-Saving dasen objects...

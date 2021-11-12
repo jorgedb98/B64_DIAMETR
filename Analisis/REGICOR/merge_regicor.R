@@ -305,6 +305,11 @@ names(metildiet_study)
 metildiet_study_450 <- metildiet_study[metildiet_study$Pool_ID=="450K",]
 metildiet_study_epic <- metildiet_study[metildiet_study$Pool_ID=="EPIC",]
 
+# Remove people having NA in scores
+library(tidyr)
+metildiet_study_450 <- metildiet_study_450 %>% drop_na(c(mds_b, mmds_b, rmed_b, hdi_b, dashf_b, hpdi_b))
+metildiet_study_epic <- metildiet_study_epic %>% drop_na(c(mds_b, mmds_b, rmed_b, hdi_b, dashf_b, hpdi_b))
+
 save(metildiet_study, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars.RData")
 save(metildiet_study_450, file="U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_450.RData")
 save(metildiet_study_epic, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_epic.RData")
