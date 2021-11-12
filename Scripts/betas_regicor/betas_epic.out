@@ -1,0 +1,36 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Fri Nov 12 12:37:20 2021
+
+
+##################################################################
+####            GETTING BETTAS FOR EPIC1 Y EPIC2              ####
+##################################################################
+
+
+
+Minfi loaded successfully
+
+Loading dasen objects for epic
+
+Epic1_dasen loaded
+
+Epic2_dasen loaded
+
+Converting objects into GenomicMethylSet
+
+epic1 done
+epic2 done
+
+
+Calculating betas...
+
+epic1 done.
+
+epic1 done.
+
+
+Saving betas...
+
+epic1 done
+epic2 done
+Analysis finished on  Fri Nov 12 12:46:39 2021 

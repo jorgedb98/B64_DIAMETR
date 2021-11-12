@@ -21,3 +21,49 @@ epic2 is a RGSet object
 For normalization, dasen will be applied
 
 Dasen done in epic1
+
+Dasen done in epic2
+
+These are the results...
+
+Epic1:
+class: MethylSet 
+dim: 811610 391 
+metadata(0):
+assays(2): Meth Unmeth
+rownames(811610): cg18478105 cg09835024 ... cg10633746 cg12623625
+rowData names(0):
+colnames(391): 201004820096_R02C01 201004820096_R05C01 ...
+  202262730194_R04C01 202262730194_R05C01
+colData names(13): Sample_Name Sample_Well ... Basename filenames
+Annotation
+  array: IlluminaHumanMethylationEPIC
+  annotation: ilm10b2.hg19
+Preprocessing
+  Method: dasen (wateRmelon)
+  minfi version: 1.38.0
+  Manifest version: 0.3.0
+
+
+Epic2:
+class: MethylSet 
+dim: 866091 208 
+metadata(0):
+assays(2): Meth Unmeth
+rownames(866091): cg18478105 cg09835024 ... cg10633746 cg12623625
+rowData names(0):
+colnames(208): 202884930006_R01C01 202884930006_R02C01 ...
+  203124370015_R07C01 203124370015_R08C01
+colData names(12): Sample_Name Sample_Well ... Basename filenames
+Annotation
+  array: IlluminaHumanMethylationEPIC
+  annotation: ilm10b2.hg19
+Preprocessing
+  Method: dasen (wateRmelon)
+  minfi version: 1.38.0
+  Manifest version: 0.3.0
+
+
+Saving dasen objects...
+Files saved successfully...
+Analysis finished on  Fri Nov 12 10:27:36 2021 

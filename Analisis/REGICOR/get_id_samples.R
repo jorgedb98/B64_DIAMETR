@@ -72,37 +72,41 @@ colnames(r_fusion) <- c("Sample_ID", "parti","Pool_ID")
 
 ## EPIC 1 (391 from which 195 are A22 study)
 
-load("/Estudis/B64_DIAMETR/Analisis/metiam_391_Methylset.RData")ç
+load("/Estudis/B64_DIAMETR/Analisis/REGICOR/metiam_391_Methylset.RData")
 # probes
 epic1_ids <- as.data.frame(probes@colData@listData[["Sample_Name"]])
+epic1_names <- as.data.frame(probes@colData@listData[["Sample_ID"]])
+epic1 <- cbind(epic1_ids,epic1_names)
 vect_epic1 <- c()
 for(i in 1:length(epic1_ids$`probes@colData@listData[["Sample_Name"]]`)){
   vect_epic1[i] <- substr(epic1_ids[i,1],7,11)
 }
 vect_epic1 <- as.numeric(vect_epic1)
-epic1_ids$parti <- vect_epic1
-colnames(epic1_ids)[1] <-"Sample_ID"
-epic1_ids <- epic1_ids[startsWith(epic1_ids$Sample_ID, "A22"),]
+epic1$parti <- vect_epic1
+colnames(epic1) <-c("Sample_ID","Sample_Name","parti")
+epic1 <- epic1[startsWith(epic1$Sample_ID, "A22"),]
 
 
 ## EPIC 2 (208 from which 103 are A22 study)
-load("/Estudis/B64_DIAMETR/Analisis/metiam_data_ext_208.RData")
+load("/Estudis/B64_DIAMETR/Analisis/REGICOR/metiam_data_ext_208.RData")
 # data_ext
 
 epic2_ids <- as.data.frame(data_ext@colData@listData[["Sample_Name"]])
+epic2_names <- as.data.frame(data_ext@colData@listData[["Sample_ID"]])
+epic2 <- cbind(epic2_ids,epic2_names)
 vect_epic2 <- c()
 for(i in 1:length(epic2_ids$`data_ext@colData@listData[["Sample_Name"]]`)){
   vect_epic2[i] <- substr(epic2_ids[i,1],7,11)
 }
 vect_epic2 <- as.numeric(vect_epic2)
-epic2_ids$parti <- vect_epic2
-colnames(epic2_ids)[1] <-"Sample_ID"
-epic2_ids <- epic2_ids[startsWith(epic2_ids$Sample_ID, "A22"),]
+epic2$parti <- vect_epic2
+colnames(epic2) <-c("Sample_ID","Sample_Name","parti")
+epic2 <- epic2[startsWith(epic2$Sample_ID, "A22"),]
 
-epic_ids <- rbind(epic1_ids, epic2_ids)
+epic_ids <- rbind(epic1, epic2)
 epic_ids$Pool_ID <- "EPIC"
-
-
+epic_ids <- epic_ids[,c(1,3,2,4)]
+colnames(epic_ids) <- c("Sample_ID","parti","sample_name","pool_id")
 
 regicor_ids <- rbind(epic_ids, r_fusion)
 save(regicor_ids, file ="/Estudis/B64_DIAMETR/Dades/regicor_ids.RData")
