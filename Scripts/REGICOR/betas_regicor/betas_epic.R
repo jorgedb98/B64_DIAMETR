@@ -1,6 +1,6 @@
 #####################################
 ## Jorge Domínguez-Barragán
-## Script for trial betas
+## Script for betas epic
 ## November 2021
 ##
 #####################################

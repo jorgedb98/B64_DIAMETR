@@ -1,0 +1,30 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Mon Nov 15 11:49:05 2021
+
+
+##################################################################
+####                 GETTING BETTAS FOR 450                   ####
+##################################################################
+
+
+
+Minfi loaded successfully
+
+Loading dasen objects for epic
+
+dasen_450 loaded
+
+Converting objects into GenomicMethylSet
+
+dasen_450 done
+
+
+Calculating betas...
+
+dasen_450 done.
+
+
+Saving betas...
+
+betas_450 done
+Analysis finished on  Mon Nov 15 11:54:55 2021 
