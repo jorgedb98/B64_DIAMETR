@@ -1,0 +1,23 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Mon Nov 15 13:35:13 2021
+
+
+##################################################################
+####                ANALYZING BETAS FOR 450                   ####
+##################################################################
+
+
+
+Minfi loaded successfully
+limmaIlluminaHumanMethylation450kmanifest
+IlluminaHumanMethylation450kanno.ilmn12.hg19
+
+Loading BETAS for 450
+
+betas_450 loaded
+
+Loading regicor database
+
+Probe-wise differential methylation analysis (DMPs) by LRM[1] 578  58
+
+ Creating design matrix
