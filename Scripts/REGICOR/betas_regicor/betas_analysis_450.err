@@ -99,7 +99,6 @@ The following object is masked from ‘package:BiocGenerics’:
 
     plotMA
 
-Error in model.frame.default(object, data, xlev = xlev) : 
-  variable lengths differ (found for 'CD8T')
-Calls: model.matrix ... model.matrix.default -> model.frame -> model.frame.default
+Error in dmpFinder(betas_450, pheno = mds_b, type = "continuous") : 
+  length of pheno does not equal number of samples
 Execution halted

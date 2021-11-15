@@ -31,10 +31,11 @@ loadRData <- function(fileName){
 }
 
 betas_450 <- loadRData("/home/jdominguez1/meth/betas_450.RData")
+dim(betas_450)
 cat("\nbetas_450 loaded\n")
 cat("\nLoading regicor database\n\n")
 regicor_450_pheno <- loadRData(fileName = "/home/jdominguez1/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_450.RData")
-
+betas_450 <- betas_450[,betas_450%in%regicor_450_pheno$sample_name]
 cat("\nDMP analysis...\n")
 
 mds_b <- regicor_450_pheno$mds_b
