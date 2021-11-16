@@ -4,7 +4,7 @@ load("U:/Estudis/B64_DIAMETR/Dades/FHS/pheno_FHS_analysis.RData")
 # pheno_fhs
 
 # Only want the cells and the shareid
-pheno_fhsVars <- pheno_fhs[,c(2,33:38)]
+pheno_fhsVars <- pheno_fhs[,c(1,2,33:38)]
 
 # merge with food information
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/phenofood_fhs.RData")
@@ -36,8 +36,8 @@ names(fhs_diet_with_cells)
 
 ## Get the variables needed
 
-fhs_diet_with_cellsVars <- fhs_diet_with_cells[,c(1:8,10:37,55,65,70,83,92,108)]
-names(fhs_diet_with_cellsVars) <- c("shareid","CD8T","CD4T","NK","Bcell","Mono","Gran","sex","age",
+fhs_diet_with_cellsVars <- fhs_diet_with_cells[,c(1:9,10:37,55,65,70,83,92,108)]
+names(fhs_diet_with_cellsVars) <- c("shareid","Slide","CD8T","CD4T","NK","Bcell","Mono","Gran","sex","age",
                                     "tot_chol","hdl_chol","trig","glucose","creatini","ldl_chol","sbp1",
                                     "dbp1","sbp2","dbp2","medita","medicol","smoke_start","smoke_end","weight1",
                                     "height1","waist_u1","waist_i1","sbp","dbp","weight","height","waist_u","waist_i",
