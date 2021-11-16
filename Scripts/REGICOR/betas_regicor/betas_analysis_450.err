@@ -99,6 +99,3 @@ The following object is masked from ‘package:BiocGenerics’:
 
     plotMA
 
-Error in dmpFinder(betas_450, pheno = mds_b, type = "continuous") : 
-  length of pheno does not equal number of samples
-Execution halted

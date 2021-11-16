@@ -1,0 +1,39 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Tue Nov 16 09:45:56 2021
+
+
+##################################################################
+####                ANALYZING BETAS FOR 450                   ####
+##################################################################
+
+
+
+Minfi loaded successfully
+limmaIlluminaHumanMethylation450kmanifest
+IlluminaHumanMethylation450kanno.ilmn12.hg19
+
+Loading BETAS for 450
+[1] 485512    646
+
+betas_450 loaded
+
+Loading regicor database
+
+
+Regicor database loaded!
+
+
+betas reduced to new size...
+[1] 485512    579
+[1] 579
+
+DMP analysis...
+[1] 579
+            intercept         beta         t         pval      qval
+cg11067907 0.15437119 -0.003174020 -4.947313 9.885406e-07 0.4799483
+cg07129523 0.19797799  0.006883343  4.704206 3.192933e-06 0.5936736
+cg06842954 0.20923857  0.004878944  4.674716 3.668335e-06 0.5936736
+cg13288164 0.51150861  0.007005779  4.608576 4.994493e-06 0.6062215
+cg11224765 0.34146966  0.004743733  4.520542 7.487723e-06 0.7270759
+cg14865393 0.07545085  0.001204184  4.348156 1.623034e-05 0.9996244
+Analysis finished on  Tue Nov 16 09:47:33 2021 
