@@ -48,24 +48,25 @@ cat("\nDMP analysis...\n")
 #
 #
 
+# Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
+# from pheno and disselect from B those samples.
+pheno_fhs <- na.omit(pheno_fhs)
+dim(pheno_fhs)
+betas_fhs_filt <- as.matrix(betas_fhs[,pheno_fhs$Slide])
+dim(betas_fhs_filt)
+
 # Considering diet
-design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+AGE+DIAB+mds+mmds+rmed+hdi2015+dashf+hpdi,data=pheno_fhs)
+design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+age+mds+mmds+rmed+hdi2015+dashf+hpdi,data=pheno_fhs)
 cat("\nDesign matrix build...\n")
 cat("Some information on the design matrix\n\n")
 colnames(design)
 head(design)
 dim(design)
 
-# Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
-# from pheno and disselect from B those samples.
-pheno_whi <- na.omit(pheno_fhs)
-dim(pheno_whi)
-betas_fhs_filt <- as.matrix(betas_fhs[,pheno_fhs$Slide])
-dim(betas_fhs_filt)
 
 cat("\nFitting the model\n")
 #fit the linear model
-fit <- lmFit(betas_whi_filt, design)
+fit <- lmFit(betas_fhs_filt, design)
 cat("\nnames de fit\n")
 names(fit)
 cat("\nCalculating moderated t-statistics with the function eBayes()\n")
@@ -88,7 +89,7 @@ cat("\n\nMetadata of CpGs from Illumina\n")
 cat("\npeta aqui?????\n")
 ann450k <- getAnnotation(IlluminaHumanMethylation450kanno.ilmn12.hg19)
 head(ann450k)
-# ann450kSub <- ann450k[match(rownames(t(betas_whi_filt)),ann450k$Name),
+# ann450kSub <- ann450k[match(rownames(t(betas_fhs_filt)),ann450k$Name),
 #                       c(1:4,18:21,24:ncol(ann450k))]
 
 #top Table for first coefficient 1 (diabetes)
