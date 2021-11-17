@@ -97,12 +97,12 @@ DMPs <- topTable(fit2, num=Inf, coef=1, genelist = ann450k, sort.by="p")
 head(DMPs)
 
 # Extract Chr, pos, and adjusted p-value columns
-
-DMPs2 <- DMPs[,c(1:2,27)]
+cat("\n################################################################\n")
+DMPs2 <- DMPs[,c(1:2,34,37)]
 head(DMPs2)
 
 write.csv(DMPs2,"/home/jdominguez1/B64_DIAMETR/Dades/FHS/DMPs2.csv",
-          row.names = TRUE, sep = ",")
+          row.names = TRUE)
 #
 #
 
