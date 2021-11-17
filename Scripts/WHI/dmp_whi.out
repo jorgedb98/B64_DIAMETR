@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-Starting analysis on  Tue Nov 16 15:34:50 2021
+Starting analysis on  Wed Nov 17 09:44:40 2021
 
 
 ##################################################################
@@ -4136,7 +4136,8 @@ DMP analysis...
 Design matrix build...
 Some information on the design matrix
 
-[1] "CD8T"  "CD4T"  "Bcell" "Mono"  "NK"    "Gran"  "AGE"   "DIAB" 
+ [1] "CD8T"    "CD4T"    "Bcell"   "Mono"    "NK"      "Gran"    "AGE"    
+ [8] "DIAB"    "mds"     "mmds"    "rmed"    "hdi2015" "dashf"   "hpdi"   
          CD8T       CD4T      Bcell       Mono         NK      Gran AGE DIAB
 1 0.061943725 0.27568608 0.11123658 0.17659598 0.16516399 0.2482576  64    0
 2 0.081198619 0.06963637 0.04697695 0.11289852 0.05424570 0.6580138  57    0
@@ -4144,18 +4145,54 @@ Some information on the design matrix
 4 0.016417426 0.20588560 0.08275327 0.09195952 0.06090897 0.5586001  62    0
 5 0.016034726 0.21360952 0.03473417 0.06335019 0.03254769 0.6499472  55    0
 6 0.083611965 0.14536596 0.05519101 0.08523253 0.12861383 0.5384358  62    0
-[1] 1757    8
+  mds mmds rmed hdi2015 dashf hpdi
+1   5   15    9       2    28   64
+2   5   13   11       2    29   61
+3   6   15    8       2    24   46
+4   4   13   11       1    21   55
+5   1    9    5       1    20   46
+6   4   10    7       0    23   52
+[1] 1757   14
 [1] 1757   23
 [1] 449525   1757
 
 Fitting the model
 
+names de fit
+ [1] "coefficients"     "rank"             "assign"           "qr"              
+ [5] "df.residual"      "sigma"            "cov.coefficients" "stdev.unscaled"  
+ [9] "pivot"            "Amean"            "method"           "design"          
+
+Calculating moderated t-statistics with the function eBayes()
+
+names de fit2
+ [1] "coefficients"     "rank"             "assign"           "qr"              
+ [5] "df.residual"      "sigma"            "cov.coefficients" "stdev.unscaled"  
+ [9] "pivot"            "Amean"            "method"           "design"          
+[13] "df.prior"         "s2.prior"         "var.prior"        "proportion"      
+[17] "s2.post"          "t"                "df.total"         "p.value"         
+[21] "lods"             "F"                "F.p.value"       
+
 A summary of the output
 
-         CD8T   CD4T  Bcell   Mono     NK   Gran    AGE   DIAB
-Down       99   1174    150   1254    219      5  65252   4668
-NotSig   1773   3495   2593  17715   3986    275 344604 442724
-Up     447653 444856 446782 430556 445320 449245  39669   2133
+         CD8T   CD4T  Bcell   Mono     NK   Gran    AGE   DIAB    mds   mmds
+Down       96   1166     97   1134    209      4  61353   3956      0    371
+NotSig   1902   3866   2676  18059   4146    409 351793 443843 449525 448754
+Up     447527 444493 446752 430332 445170 449112  36379   1726      0    400
+         rmed hdi2015  dashf   hpdi
+Down        0       0   5619      0
+NotSig 449525  449525 439958 449524
+Up          0       0   3948      1
+
+Summary providing pvalue cut-off
+         CD8T   CD4T  Bcell   Mono     NK   Gran    AGE   DIAB    mds   mmds
+Down      114   1312    132   1577    238      8  79126   6523      0    657
+NotSig   1465   3210   2092  14743   3059    313 327235 439907 449525 448147
+Up     447946 445003 447301 433205 446228 449204  43164   3095      0    721
+         rmed hdi2015  dashf   hpdi
+Down        0       0   8375      0
+NotSig 449525  449525 434966 449522
+Up          0       0   6184      3
 
 
 Metadata of CpGs from Illumina
@@ -4238,84 +4275,84 @@ cg01707559
 cg00014152 chrY  9385539      - cg00455876 27653438 69732350
 cg00021786 chrY 22918038      + cg02050847 43656343 73683470
 cg00378950 chrY 14100276      - cg05213048 32755394 53617498
-cg00551957 chrY  9385586      + cg09460641 44630450 54622505
 cg00812634 chrY 15816361      - cg18032798 71668419 28783406
 cg00855706 chrY 21728575      + cg25756647 15639316 70628509
+cg00907920 chrY 14099742      - cg26520468 47806315 71677312
                                                     ProbeSeqA
 cg00014152 AACTCTAAACTACCCAACACAAACTCCAAAAACTTCTCAAAAAAAACTCA
 cg00021786 CAAATAAATCCAAAACTAAAACACAAACATCTTACCATAACAAAATCCCA
 cg00378950 CCAAAACTTATTTATTTTCCCCAACAAAACACTCTACATCTACAACCTCA
-cg00551957 AACCAATCAATAAAAAAACAACAAACATCTCCCTAAACTACACAACCACA
 cg00812634 AAAATAAACTCCAATCCTCCCCCATCTTTAAAAAAACTAAAATACAAACA
 cg00855706 ACCCAAACTCCAACCTATCCAATACAATAAAATCCACATACTATTCCCCA
+cg00907920 TCAAATACAAAATCAAAACCAATATATATACACCACCAACAACCTATACA
                                                     ProbeSeqB Type NextBase
 cg00014152 AACTCTAAACTACCCGACACAAACTCCAAAAACTTCTCGAAAAAAACTCG    I        A
 cg00021786 CAAATAAATCCGAAACTAAAACGCAAACGTCTTACCATAACGAAATCCCG    I        C
 cg00378950 CCGAAACTTATTTATTTTCCCCAACGAAACGCTCTACATCTACAACCTCG    I        C
-cg00551957 AACCAATCAATAAAAAAACGACGAACGTCTCCCTAAACTACACAACCACG    I        A
 cg00812634 AAAATAAACTCCGATCCTCCCCCATCTTTAAAAAAACTAAAATACGAACG    I        A
 cg00855706 ACCCAAACTCCAACCTATCCAATACAATAAAATCCACGTACTATTCCCCG    I        C
+cg00907920 TCAAATACAAAATCGAAACCAATATATATACACCGCCAACAACCTATACG    I        A
            Color Probe_rs Probe_maf CpG_rs CpG_maf SBE_rs SBE_maf
 cg00014152   Red     <NA>        NA   <NA>      NA   <NA>      NA
 cg00021786   Grn     <NA>        NA   <NA>      NA   <NA>      NA
 cg00378950   Grn     <NA>        NA   <NA>      NA   <NA>      NA
-cg00551957   Red     <NA>        NA   <NA>      NA   <NA>      NA
 cg00812634   Red     <NA>        NA   <NA>      NA   <NA>      NA
 cg00855706   Grn     <NA>        NA   <NA>      NA   <NA>      NA
+cg00907920   Red     <NA>        NA   <NA>      NA   <NA>      NA
                      Islands_Name Relation_to_Island
 cg00014152   chrY:9385471-9385777             Island
 cg00021786                                   OpenSea
 cg00378950 chrY:14100002-14100593             Island
-cg00551957   chrY:9385471-9385777             Island
 cg00812634 chrY:15815488-15815779            S_Shore
 cg00855706 chrY:21729143-21729556            N_Shore
+cg00907920 chrY:14100002-14100593            N_Shore
                                                                                                                        Forward_Sequence
 cg00014152 CGCGTGTGCCTGGACTCTGAGCTACCCGGCACAAGCTCCAAGGGCTTCTCGGAGGAGGCT[CG]GGGACGGAAGGCGTGGGGTGAGTGGGCTGGAGATGCAGGCGCGCCCGTGGCTGTGCAGCC
 cg00021786 CCCGCTGTTTATCACCGCAGATTACGGTTGCACCGTAAAAGGAGAGGTTCTGTTCCGTCG[CG]GGATTTCGCCATGGTAAGACGTCTGCGTCCTAGCTCCGGATTTATCTGCCTCCATCCTTT
 cg00378950 GCATTTCCTCCACCGGAACTTGTTTGTTTTCCCCAACGGGACGCTCTACATCTGCAACCT[CG]CGCCCAAGGACAGCGGGCGCTATGAGTGCGTGGCCGCCAACCTGATCGGCTCCGCGCGCA
-cg00551957 CTCGGAGGAGGCTCGGGGACGGAAGGCGTGGGGTGAGTGGGCTGGAGATGCAGGCGCGCC[CG]TGGCTGTGCAGCCCAGGGAGACGCCCGCCGCCCTCCCATTGATTGGCCATGAGGGAAGGA
 cg00812634 TGTCTTCCAAAGAAAGTAAGCTCCGATCCTCCCCCATCTTTAGAAAGGCTGGAATGCGAG[CG]GGCGGTGGGAGGGCGGGAGACTGGGAGCTGCCACGGGAAGAATTCGGGAGGCAGGGGAGG
 cg00855706 TTTAACCTGTACTTGGTGCAAAATAGCTGCTGATAGTTGTTTCAAGCCCGCGTGGGTCAG[CG]GGGAACAGTACGTGGACCCCATTGCACTGGACAGGCTGGAGTCTGGGTCGGTGTCAGAGC
+cg00907920 GATAAGGAAGTTTCAAGTGCAAGATCGAGGCCAGTATATGTGCACCGCCAGCAACCTGTA[CG]GCCTGGACAGGATGGTGGTCTTTCTCTGGGTCACCGTGCAGCAACCTCAAATCCTAGCCT
                                                     SourceSeq Random_Loci
 cg00014152 GACTCTGAGCTACCCGGCACAAGCTCCAAGGGCTTCTCGGAGGAGGCTCG            
 cg00021786 CAGATAAATCCGGAGCTAGGACGCAGACGTCTTACCATGGCGAAATCCCG            
 cg00378950 CCGGAACTTGTTTGTTTTCCCCAACGGGACGCTCTACATCTGCAACCTCG            
-cg00551957 GGCCAATCAATGGGAGGGCGGCGGGCGTCTCCCTGGGCTGCACAGCCACG            
 cg00812634 AAAGTAAGCTCCGATCCTCCCCCATCTTTAGAAAGGCTGGAATGCGAGCG            
 cg00855706 CGGGGAACAGTACGTGGACCCCATTGCACTGGACAGGCTGGAGTCTGGGT            
+cg00907920 TCAAGTGCAAGATCGAGGCCAGTATATGTGCACCGCCAGCAACCTGTACG            
            Methyl27_Loci UCSC_RefGene_Name    UCSC_RefGene_Accession
 cg00014152                                                          
 cg00021786                   RPS4Y2;RPS4Y2 NM_001039567;NM_001039567
 cg00378950                                                          
-cg00551957                                                          
 cg00812634                          TMSB4Y                 NM_004202
 cg00855706                        CYorf15A              NM_001005852
+cg00907920                                                          
            UCSC_RefGene_Group Phantom DMR Enhancer          HMM_Island
 cg00014152                                           Y:9993394-9995882
 cg00021786      1stExon;5'UTR                      Y:21327301-21327921
 cg00378950                                         Y:12609727-12610613
-cg00551957                                           Y:9993394-9995882
 cg00812634               Body                      Y:14325718-14325771
 cg00855706            TSS1500                      Y:20187951-20188014
+cg00907920                                         Y:12609727-12610613
            Regulatory_Feature_Name Regulatory_Feature_Group DHS     logFC
-cg00014152                                                      0.8611529
-cg00021786                                                      0.8911911
-cg00378950                                                      0.7561057
-cg00551957                                                      0.8569230
-cg00812634                                                      0.8969116
-cg00855706                                                      0.7462047
+cg00014152                                                      0.8642534
+cg00021786                                                      0.8874979
+cg00378950                                                      0.7521627
+cg00812634                                                      0.8949054
+cg00855706                                                      0.7420612
+cg00907920                                                      0.8332833
              AveExpr         t P.Value adj.P.Val         B
-cg00014152 0.9333474  76.62892       0         0 1278.9598
-cg00021786 0.9446374  74.25534       0         0 1236.8165
-cg00378950 0.8751776  57.55536       0         0  920.6723
-cg00551957 0.9151541  50.14293       0         0  770.4032
-cg00812634 0.9635507 132.72872       0         0 2095.4422
-cg00855706 0.8006982  50.95767       0         0  787.1567
+cg00014152 0.9333474  73.93060       0         0 1229.0464
+cg00021786 0.9446374  71.05414       0         0 1177.0491
+cg00378950 0.8751776  55.03286       0         0  869.0388
+cg00812634 0.9635507 127.20186       0         0 2023.6972
+cg00855706 0.8006982  48.71031       0         0  740.0203
+cg00907920 0.9268861  92.68340       0         0 1543.2158
             chr      pos Phantom
 cg00014152 chrY  9385539        
 cg00021786 chrY 22918038        
 cg00378950 chrY 14100276        
-cg00551957 chrY  9385586        
 cg00812634 chrY 15816361        
 cg00855706 chrY 21728575        
-Analysis finished on  Tue Nov 16 15:39:12 2021 
+cg00907920 chrY 14099742        
+Analysis finished on  Wed Nov 17 09:49:43 2021 
