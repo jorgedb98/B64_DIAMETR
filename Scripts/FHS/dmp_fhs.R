@@ -50,7 +50,7 @@ cat("\nDMP analysis...\n")
 
 # Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
 # from pheno and disselect from B those samples.
-pheno_fhs <- na.omit(pheno_fhs)
+pheno_fhs <- na.omit(pheno_fhs[,c(38:43)])
 dim(pheno_fhs)
 betas_fhs_filt <- as.matrix(betas_fhs[,pheno_fhs$Slide])
 dim(betas_fhs_filt)

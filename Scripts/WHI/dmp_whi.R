@@ -97,7 +97,7 @@ head(DMPs)
 
 # Extract Chr, pos, and adjusted p-value columns
 
-DMPs2 <- DMPs[,c(1:2,27)]
+DMPs2 <- DMPs[,c(1:2,34,37)]
 head(DMPs2)
 
 write.csv(DMPs2,"/home/jdominguez1/B64_DIAMETR/Dades/WHI/DMPs2.csv",
