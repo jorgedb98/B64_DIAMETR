@@ -1,0 +1,9 @@
+Loading required package: mgcv
+Loading required package: nlme
+This is mgcv 1.8-38. For overview type 'help("mgcv-package")'.
+Loading required package: genefilter
+Loading required package: BiocParallel
+Error in t(mod) %*% mod : 
+  requires numeric/complex matrix/vector arguments
+Calls: num.sv -> solve
+Execution halted

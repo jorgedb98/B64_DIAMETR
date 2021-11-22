@@ -1,3 +1,13 @@
+##########################
+####
+##    Surrogate variables
+####
+##    Jorge Dominguez
+##    November 2021
+##########################
+
+
+
 rm(list=ls())
 
 date()
@@ -25,7 +35,8 @@ print(out.file)
 
 
 print("Load Pheno")
-pheno <- read.table(pheno.file, header=T, stringsAsFactors = F, sep=";")
+pheno <- load(pheno.file)
+pheno <- get(pheno)
 head(pheno)
 
 
@@ -45,7 +56,8 @@ if(inherits(chr_covariates, 'try-error')){
 
 num_covariates <- num_covariates$V1
 chr_covariates <- chr_covariates$V1
-
+length(num_covariates)
+length(chr_covariates)
 
 print("free_text")
 slash <- substring(free_text, nchar(free_text), nchar(free_text))
@@ -78,7 +90,7 @@ if(identical(pheno$Slide, rownames(mt_val))==F)
   identical(pheno$Slide, rownames(mt_val))
 }
 
-
+num_covariates
 print("Pheno variables")
 pheno <- pheno[, c(num_covariates, chr_covariates, "Slide", x)]
 print(head(pheno))
@@ -128,12 +140,13 @@ dim(mod0)
 
 
 print("svas")
-svobj <- sva(na.omit(mt_val), mod, mod0, n.sv = 2)
+n.sv <- num.sv(na.omit(mt_val), part1, method="leek",seed=123)
+svobj <- sva(na.omit(mt_val), mod, mod0, n.sv = n.sv)
 
 pheno <- cbind(pheno, svobj$sv)
 print("hi2")
 
-n.sv = 2
+n.sv = n.sv
 
 
 print("Let's save it!")
