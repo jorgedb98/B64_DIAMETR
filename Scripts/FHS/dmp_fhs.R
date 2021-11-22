@@ -36,7 +36,7 @@ cat("\n\nSelecting from beta dataframe those participants in the pheno data...\n
 betas_fhs <- betas_fhs[,pheno_fhs$Slide]
 cat("\nbetas reduced to new size...\n")
 dim(betas_fhs)
-head(betas_fhs)
+# head(betas_fhs)
 cat("\nDMP analysis...\n")
 
 # mds <- pheno_fhs$mds
@@ -50,13 +50,14 @@ cat("\nDMP analysis...\n")
 
 # Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
 # from pheno and disselect from B those samples.
-pheno_fhs <- na.omit(pheno_fhs[,c(38:43)])
+
+pheno_fhs <- pheno_fhs[!is.na(c(pheno_fhs[,c(3:10,38:43)])),]
 dim(pheno_fhs)
 betas_fhs_filt <- as.matrix(betas_fhs[,pheno_fhs$Slide])
 dim(betas_fhs_filt)
 
-# Considering diet
-design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+age+mds+mmds+rmed+hdi2015+dashf+hpdi,data=pheno_fhs)
+# Considering diet. One per diet.
+design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+age+sex+mds,data=pheno_fhs)
 cat("\nDesign matrix build...\n")
 cat("Some information on the design matrix\n\n")
 colnames(design)

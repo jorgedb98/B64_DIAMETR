@@ -1,0 +1,3 @@
+Error in eval(predvars, data, env) : object 'CD8T' not found
+Calls: model.matrix ... model.matrix.default -> model.frame -> model.frame.default -> eval -> eval
+Execution halted

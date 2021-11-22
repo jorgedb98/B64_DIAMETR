@@ -48,20 +48,23 @@ cat("\nDMP analysis...\n")
 # 
 # 
 
+# Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
+# from pheno and disselect from B those samples.
+pheno_whi<- pheno_whi[rowSums(is.na(pheno_whi[,7:23]))!=17,]
+# pheno_whi <- pheno_whi[!is.na(c(pheno_whi[,7:23])),]
+dim(pheno_whi)
+betas_whi_filt <- as.matrix(betas_whi[,pheno_whi$Slide])
+dim(betas_whi_filt)
+
 # Considering diet
-design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+AGE+DIAB+mds+mmds+rmed+hdi2015+dashf+hpdi,data=pheno_whi)
+design <- model.matrix(~0+CD8T+CD4T+Bcell+Mono+NK+Gran+AGE+F60ENRGY,data=pheno_whi)
 cat("\nDesign matrix build...\n")
 cat("Some information on the design matrix\n\n")
 colnames(design)
 head(design)
 dim(design)
 
-# Some diab rows have NA's so, we delete this individuals also in B matrix. Get the names
-# from pheno and disselect from B those samples.
-pheno_whi <- na.omit(pheno_whi)
-dim(pheno_whi)
-betas_whi_filt <- as.matrix(betas_whi[,pheno_whi$Slide])
-dim(betas_whi_filt)
+
 
 cat("\nFitting the model\n")
 #fit the linear model
