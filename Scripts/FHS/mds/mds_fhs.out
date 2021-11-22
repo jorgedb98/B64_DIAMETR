@@ -1,0 +1,30 @@
+WARNING: ignoring environment value of R_HOME
+Starting analysis on  Mon Nov 22 11:41:13 2021
+
+
+##################################################################
+####                  ANALYSIS OF FHS 450K                    ####
+##################################################################
+
+###################
+ Loading libraries 
+###################
+
+
+###################
+    Input files    
+###################
+
+Pheno file: /home/jdominguez1/B64_DIAMETR/Dades/FHS/fhs_diet_cellsVarsFam.RData
+Betas file: /home/jdominguez1/meth/b_meth_dasen_fhs_no_xy.RData
+Dependent Var: mds
+Numerical covars: /home/jdominguez1/B64_DIAMETR/Scripts/FHS/mds/numCovar.sh
+Character covars: /home/jdominguez1/B64_DIAMETR/Scripts/FHS/mds/chrCovar.sh
+Free text: /home/jdominguez1/B64_DIAMETR/Scripts/FHS/mds
+Output file: model3_2sva_mds
+###################
+ Starting analysis 
+###################
+
+Pheno file:
+

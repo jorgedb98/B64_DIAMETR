@@ -1,0 +1,8 @@
+Loading required package: mgcv
+Loading required package: nlme
+This is mgcv 1.8-38. For overview type 'help("mgcv-package")'.
+Loading required package: genefilter
+Loading required package: BiocParallel
+Error in cat(head(pheno, 2)) : 
+  argument 1 (type 'list') cannot be handled by 'cat'
+Execution halted
