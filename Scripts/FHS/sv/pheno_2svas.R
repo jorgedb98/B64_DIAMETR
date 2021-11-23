@@ -134,15 +134,19 @@ print(str(pheno))
 
 print(identical(pheno$Slide, colnames(mt_val)))
 
+dim(mt_val)
 dim(na.omit(mt_val))
 dim(mod)
 dim(mod0)
 
 
 print("svas")
-n.sv <- num.sv(na.omit(mt_val), part1, method="leek",seed=123)
+part1
+n.sv <- num.sv(na.omit(mt_val), mod, method="leek",seed=123)
+n.sv
+print("aqui1")
 svobj <- sva(na.omit(mt_val), mod, mod0, n.sv = n.sv)
-
+print(("aqui2"))
 pheno <- cbind(pheno, svobj$sv)
 print("hi2")
 
@@ -150,8 +154,8 @@ n.sv = n.sv
 
 
 print("Let's save it!")
-names(pheno)[13] <- "sva1"
-names(pheno)[14] <- "sva2"
+names(pheno)[(ncol(pheno)-1)] <- "sva1"
+names(pheno)[ncol(pheno)] <- "sva2"
 write.table(pheno, file=paste(free_text, out.file, n.sv, ".csv", sep=""), row.names=F, col.names=T, sep=",")
 
 

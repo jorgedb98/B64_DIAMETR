@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-[1] "Mon Nov 22 17:08:09 2021"
+[1] "Tue Nov 23 11:47:28 2021"
 [1] "libraries"
 [1] "loading files"
 [1] "/home/jdominguez1/B64_DIAMETR/Dades/FHS/fhs_diet_cellsVarsFam.RData"
@@ -4479,7 +4479,17 @@ WARNING: ignoring environment value of R_HOME
  $ mds      : num  6 6 3 6 1 4 4 5 2 5 ...
 NULL
 [1] TRUE
+[1] 483656   1853
 [1] 66794  1853
 [1] 1853  942
 [1] 1853  941
 [1] "svas"
+[1] "model.matrix(~ mds + CD8T + CD4T + NK + Bcell + Mono + Gran + age + factor( sex ) + factor( family_ID ),data=pheno)"
+[1] 2
+[1] "aqui1"
+Number of significant surrogate variables is:  2 
+Iteration (out of 5 ):1  2  3  4  5  [1] "aqui2"
+[1] "hi2"
+[1] "Let's save it!"
+[1] "Tue Nov 23 12:01:39 2021"
+[1] "###############################################THE END###############################################"
