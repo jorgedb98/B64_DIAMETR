@@ -64,7 +64,7 @@ try<-merge(item,nutr,by="dbGaP_Subject_ID")
 load("./data/WHI/pheno_f2_cellcount.RData")
 # 1863
 
-# Camille 11/11/2021: This dataset has the same number of people as in Fernández-Sanlés et al. Clin Epigenet (2021) 13:86
+# Camille 11/11/2021: This dataset has the same number of people as in FernÃ¡ndez-SanlÃ©s et al. Clin Epigenet (2021) 13:86
 # BUT it does NOT contain information on BMI, smoking, physical activity, clinical markers
 ### --> Need to find it!
 
@@ -809,3 +809,28 @@ foodvar2<-c(foodvar,"F60VY.x","F60ENRGY","mds","mmds","rmed","hdi2015","dashf","
 phenofood_whi<-try[,..foodvar2]
 
 save(phenofood_whi,file="./data/WHI/phenofood0_whi.RData")
+
+#### MERGE WITH THE CLINICAL AND QUESTIONNAIRE DATA FOR BMI, PHYSICAL ACTIVITY, SMOKING ####
+# load the questionnaire and physical examination datasets downloaded from dbgap 22/11/2021
+clinic<-read.table("./data/WHI/phs000200.v12.pht001019.v6.p3.c1.f80_rel1.HMB-IRB.txt",header=T,sep="\t",quote="",stringsAsFactors=F)
+clinic<-subset(clinic, F80VY==0)
+habits<-read.table("./data/WHI/phs000200.v12.pht001003.v6.p3.c1.f34_rel2.HMB-IRB.txt",header=T,sep="\t",quote="",stringsAsFactors=F)
+habitvar<-c("dbGaP_Subject_ID","TEXPWK","SMOKING","ALCOHOL")
+habits<-habits[,habitvar]
+clinicvar<-c("dbGaP_Subject_ID","WAISTX","HIPX","SYST","DIAS","BMIX","WHRX")
+clinic<-clinic[,clinicvar]
+
+# merge the databases
+try<-merge(phenofood_whi,habits,by="dbGaP_Subject_ID")
+phenofood_whi<-merge(try,clinic,by="dbGaP_Subject_ID")
+
+save(phenofood_whi,file="./data/WHI/phenofood_whi.RData")
+
+# TEXPWK	Total energy expend from recreational phys activity (MET-hours/week)
+# SMOKING	Smoking status	0=Never Smoked 1=Past Smoker 2=Current Smoker
+# ALCOHOL                     1=Non drinker	2=Past drinker	3=<1 drink per month	4=<1 drink per week	5=1 to <7 drinks per week	6=7+ drinks per week
+# WHRX	Waist hip ratio
+# SYS   Systolic BP
+# DIAS	Diastolic BP
+# WAISTX	F80 Waist circumference cm
+# HIPX	F80 Hip circumference cm
