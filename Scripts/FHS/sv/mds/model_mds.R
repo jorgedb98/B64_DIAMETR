@@ -77,6 +77,8 @@ if(identical(pheno$Slide, rownames(mt_val))==F)
   identical(pheno$Slide, rownames(mt_val))
 }
 
+print("Dims de mt_val")
+print(dim(mt_val))
 
 print("Pheno variables")
 pheno <- pheno[, c(num_covariates, chr_covariates, "Slide", x)]
@@ -88,11 +90,14 @@ print(dim(pheno))
 
 print("cpgs to analyze")
 cpg<-names(mt_val)
+print(dim(mt_val))
+print(length(cpg))
 print(cpg)
 
 
-print("diabetes=x1")
+print("diet=x1")
 x1 <- pheno[,x]
+head(x1,5)
 
 print("covar=X")
 X <- "cbind("
@@ -103,6 +108,9 @@ X <- paste(X,")", sep="")
 print(X)
 X <- eval(parse(text=X))
 
+print("Trying what is in X")
+colnames(X)<-c(num_covariates, chr_covariates)
+colnames(X)
 
 print("info prior to ewas")
 print(identical(rownames(mt_val), pheno$Slide))
@@ -115,31 +123,32 @@ print(dim(na.omit(pheno)))
 print("Linear regresion - EWAS")
 res <- mclapply(cpg, function(i){
   y <- mt_val[,i]
-  mod <- glm(x1 ~ y + X , family="gaussian")
-  coef<- summary(mod)$coefficients[2,"Estimate"]
-  se <- summary(mod)$coefficients[2,"Std. Error"]
-  pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
-  out <- c(coef, se, pval)
-  names(out) <- c("Coefficient","SE", "Pvalue")
-  out
+  mod <- glm(y ~ x1 + X)
+  # coef<- summary(mod)$coefficients[2,"Estimate"]
+  # se <- summary(mod)$coefficients[2,"Std. Error"]
+  # pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
+  # out <- c(coef, se, pval)
+  # names(out) <- c("Coefficient","SE", "Pvalue")
+  # out
+  # dim(mod)
 })
 
 head(res)
 
 print("Let's save it!")
-res <- matrix(unlist(res), ncol=3, byrow=T)
-head(res)
-colnames(res) <- c("Coefficient","SE", "Pvalue")
-rownames(res) <- cpg
-res <- as.data.frame(res)
-res$cpg<-rownames(res)
-res<-res[order(res[,3]),]
-res<-res[,c(4,1:3)]
-save(res, file=paste(free_text, out.file, ".RData", sep=""))
-write.table(res, file=paste(free_text, out.file, ".csv", sep=""), row.names=F, col.names=T, sep=";", quote=F)
-
-
-date()
+# res <- matrix(unlist(res), ncol=3, byrow=T)
+# head(res)
+# colnames(res) <- c("Coefficient","SE", "Pvalue")
+# rownames(res) <- cpg
+# res <- as.data.frame(res)
+# res$cpg<-rownames(res)
+# res<-res[order(res[,3]),]
+# res<-res[,c(4,1:3)]
+# save(res, file=paste(free_text, out.file, ".RData", sep=""))
+# write.table(res, file=paste(free_text, out.file, ".csv", sep=""), row.names=F, col.names=T, sep=";", quote=F)
+# 
+# 
+# date()
 
 
 print("###############################################THE END###############################################")

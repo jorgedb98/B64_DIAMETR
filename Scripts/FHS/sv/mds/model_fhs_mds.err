@@ -1,10 +1,1 @@
-Warning message:
-In mclapply(cpg, function(i) { :
-  all scheduled cores encountered errors in user code
-Warning message:
-In matrix(unlist(res), ncol = 3, byrow = T) :
-  data length [483656] is not a sub-multiple or multiple of the number of rows [161219]
-Error in dimnames(x) <- dn : 
-  length of 'dimnames' [1] not equal to array extent
-Calls: rownames<-
-Execution halted
+slurmstepd-rslurmdb-0.rslurmdb: error: *** JOB 9063 ON rslurmdb-0.rslurmdb CANCELLED AT 2021-11-24T12:06:57 ***

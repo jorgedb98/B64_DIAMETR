@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-[1] "Tue Nov 23 14:10:50 2021"
+[1] "Wed Nov 24 11:46:37 2021"
 [1] "libraries"
 [1] "loading files"
 [1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/mds/pheno_sva_2.csv"
@@ -44,6 +44,8 @@ WARNING: ignoring environment value of R_HOME
 8221924002_R02C01 -1.0404658 -1.0973081 -0.46112379
 [1] "Same dim"
 [1] TRUE
+[1] "Dims de mt_val"
+[1]   1853 483656
 [1] "Pheno variables"
          CD8T       CD4T         NK       Bcell       Mono      Gran age sex
 1 0.000000000 0.21292473 0.07889540 0.007258509 0.17627044 0.5114801  67   1
@@ -63,6 +65,8 @@ WARNING: ignoring environment value of R_HOME
  [7] "age"       "sex"       "family_ID" "Slide"     "mds"      
 [1] 1853   11
 [1] "cpgs to analyze"
+[1]   1853 483656
+[1] 483656
     [1] "cg01707559" "cg02004872" "cg02494853" "cg03244189" "cg03706273"
     [6] "cg04023335" "cg04462340" "cg04689676" "cg04792227" "cg04964672"
    [11] "cg05213048" "cg13851368" "cg14180491" "cg14210405" "cg15027426"
@@ -20064,9 +20068,13 @@ WARNING: ignoring environment value of R_HOME
 [99991] "cg16460359" "cg16468079" "cg16470309" "cg16472060" "cg16477190"
 [99996] "cg16480660" "cg16492577" "cg16512924" "cg16522107"
  [ reached getOption("max.print") -- omitted 383657 entries ]
-[1] "diabetes=x1"
+[1] "diet=x1"
+[1] 6 6 3 6 1
 [1] "covar=X"
 [1] "cbind(pheno$CD8T,pheno$CD4T,pheno$NK,pheno$Bcell,pheno$Mono,pheno$Gran,pheno$age,factor(pheno$sex),factor(pheno$family_ID))"
+[1] "Trying what is in X"
+[1] "CD8T"      "CD4T"      "NK"        "Bcell"     "Mono"      "Gran"     
+[7] "age"       "sex"       "family_ID"
 [1] "info prior to ewas"
 [1] TRUE
 [1]   1853 483656
@@ -20074,67 +20082,3 @@ WARNING: ignoring environment value of R_HOME
 [1] 1853   11
 [1] 1853   11
 [1] "Linear regresion - EWAS"
-[[1]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[[2]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[[3]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[[4]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[[5]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[[6]]
-[1] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-attr(,"class")
-[1] "try-error"
-attr(,"condition")
-<simpleError in summary(mod)$coefficients[2, "Pr(>|z|)"]: subscript out of bounds>
-
-[1] "Let's save it!"
-     [,1]                                                                                 
-[1,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[2,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[3,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[4,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[5,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[6,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-     [,2]                                                                                 
-[1,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[2,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[3,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[4,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[5,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[6,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-     [,3]                                                                                 
-[1,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[2,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[3,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[4,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[5,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
-[6,] "Error in summary(mod)$coefficients[2, \"Pr(>|z|)\"] : \n  subscript out of bounds\n"
