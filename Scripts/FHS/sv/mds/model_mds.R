@@ -4,6 +4,7 @@ date()
 
 print("libraries")
 library(parallel)
+# library(lme4)
 
 
 print("loading files")
@@ -61,6 +62,7 @@ mt_val <- get(mt_val)
 rm(mt_value_n)
 print(mt_val[1:3,1:3])
 
+mini_mtval <- mt_val[1:100,1:2]
 
 print("Same dim")
 if(identical(rownames(mt_val), pheno$Slide)==T)
@@ -119,23 +121,55 @@ print(dim(na.omit(mt_val)))
 print(dim(pheno))
 print(dim(na.omit(pheno)))
 
+mini_cpg <- cpg[1:2]
+mini_mt <- mt_val[1:100,1:2]
 
 print("Linear regresion - EWAS")
-res <- mclapply(cpg, function(i){
-  y <- mt_val[,i]
-  mod <- glm(y ~ x1 + X)
-  # coef<- summary(mod)$coefficients[2,"Estimate"]
-  # se <- summary(mod)$coefficients[2,"Std. Error"]
-  # pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
-  # out <- c(coef, se, pval)
-  # names(out) <- c("Coefficient","SE", "Pvalue")
-  # out
-  # dim(mod)
+res <- mclapply(mini_cpg, function(i){
+  y <- mini_mt[,i]
+  mod <- glm(y ~ x1 + X, family="gaussian")
+  coef<- summary(mod)$coefficients[2,"Estimate"]
+  se <- summary(mod)$coefficients[2,"Std. Error"]
+  pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
+  out <- c(coef, se, pval)
+  names(out) <- c("Coefficient","SE", "Pvalue")
+  out
+  dim(mod)
 })
 
 head(res)
 
 print("Let's save it!")
+res <- matrix(unlist(res), ncol=3, byrow=T)
+head(res)
+colnames(res) <- c("Coefficient","SE", "Pvalue")
+rownames(res) <- cpg
+res <- as.data.frame(res)
+res$cpg<-rownames(res)
+res<-res[order(res[,3]),]
+res<-res[,c(4,1:3)]
+save(res, file=paste(free_text, out.file, ".RData", sep=""))
+write.table(res, file=paste(free_text, out.file, ".csv", sep=""), row.names=F, col.names=T, sep=";", quote=F)
+
+
+date()
+
+# print("Linear regresion - EWAS")
+# res <- mclapply(cpg, function(i){
+#   y <- mt[,i]
+#   mod <- glm(y ~ x1 + X + (1|pheno_fhs$family_ID), family="gaussian")
+#   coef<- summary(mod)$coefficients[2,"Estimate"]
+#   se <- summary(mod)$coefficients[2,"Std. Error"]
+#   pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
+#   out <- c(coef, se, pval)
+#   names(out) <- c("Coefficient","SE", "Pvalue")
+#   out
+#   dim(mod)
+# })
+# 
+# head(res)
+# 
+# print("Let's save it!")
 # res <- matrix(unlist(res), ncol=3, byrow=T)
 # head(res)
 # colnames(res) <- c("Coefficient","SE", "Pvalue")

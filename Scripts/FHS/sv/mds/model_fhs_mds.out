@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-[1] "Wed Nov 24 11:46:37 2021"
+[1] "Thu Nov 25 12:11:48 2021"
 [1] "libraries"
 [1] "loading files"
 [1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/mds/pheno_sva_2.csv"
@@ -20082,3 +20082,24 @@ WARNING: ignoring environment value of R_HOME
 [1] 1853   11
 [1] 1853   11
 [1] "Linear regresion - EWAS"
+[[1]]
+[1] "Error in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE) : \n  variable lengths differ (found for 'x1')\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE): variable lengths differ (found for 'x1')>
+
+[[2]]
+[1] "Error in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE) : \n  variable lengths differ (found for 'x1')\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE): variable lengths differ (found for 'x1')>
+
+[1] "Let's save it!"
+     [,1]                                                                                                                            
+[1,] "Error in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE) : \n  variable lengths differ (found for 'x1')\n"
+     [,2]                                                                                                                            
+[1,] "Error in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE) : \n  variable lengths differ (found for 'x1')\n"
+     [,3]                                                                                                                            
+[1,] "Error in model.frame.default(formula = y ~ x1 + X, drop.unused.levels = TRUE) : \n  variable lengths differ (found for 'x1')\n"
