@@ -37,7 +37,7 @@ print(out.file)
 print("Load Pheno")
 pheno <- load(pheno.file)
 pheno <- get(pheno)
-head(pheno)
+str(pheno)
 
 
 print("Load covariates")
@@ -92,7 +92,7 @@ if(identical(pheno$Slide, rownames(mt_val))==F)
 
 num_covariates
 print("Pheno variables")
-pheno <- pheno[, c(num_covariates, chr_covariates, "Slide", x)]
+pheno <- pheno[c(num_covariates, chr_covariates, "Slide", x)]
 print(head(pheno))
 print(names(pheno)) 
 pheno <- na.omit(pheno)
@@ -156,6 +156,22 @@ n.sv = n.sv
 print("Let's save it!")
 names(pheno)[(ncol(pheno)-1)] <- "sva1"
 names(pheno)[ncol(pheno)] <- "sva2"
+
+# Select where to save the file
+if(x == "mds"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/mds"
+} else if(x =="mmds"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/mmds"
+} else if(x == "rmed"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/rmed"
+} else if(x == "hdi2015"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/hdi2015"
+} else if(x =="dashf"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/dashf"
+} else if(x=="hpdi"){
+  free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/hpdi"
+}
+
 write.table(pheno, file=paste(free_text, out.file, n.sv, ".csv", sep=""), row.names=F, col.names=T, sep=",")
 
 
