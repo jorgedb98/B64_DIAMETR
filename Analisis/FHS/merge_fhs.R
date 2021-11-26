@@ -10,7 +10,7 @@ pheno_fhsVars <- pheno_fhs[,c(1,2,33:38)]
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/phenofood_fhs.RData")
 # phenofood_fhs
 fhs_diet_with_cells <- merge(pheno_fhsVars,phenofood_fhs, by="shareid" )
-names
+names(fhs_diet_with_cells)
 
 # [1] "shareid"         "slide.x"         "CD8T.x"          "CD4T.x"          "NK.x"           
 # [6] "Bcell.x"         "Mono.x"          "Gran.x"          "sex"             "slide.y"        
@@ -35,6 +35,8 @@ names
 # [101] "hpdi_refgrain"   "hpdi_potato"     "hpdi_sweet"      "hpdi_anifat"     "hpdi_dairy"     
 # [106] "hpdi_egg"        "hpdi_fish"       "hpdi_meat"       "hpdi" 
 
+
+
 ## Get the variables needed
 
 fhs_diet_with_cellsVars <- fhs_diet_with_cells[,c(1:9,11:38,56,66,76,84,93,109)]
@@ -45,6 +47,15 @@ names(fhs_diet_with_cellsVars) <- c("shareid","Slide","CD8T","CD4T","NK","Bcell"
                                     "height1","waist_u1","waist_i1","sbp","dbp","weight","height","waist_u","waist_i",
                                     "smoke","euc1","euc2","mds","mmds","rmed","hdi2015","dashf","hpdi")
 
+## Add PA
+
+pheno_PA <- get(load("C:/Users/jdominguez1/Desktop/db/pheno_fhs_metscore.RData"))
+pheno_PA <- pheno_PA[,c(2,155:157)]
+pheno_PA[is.na(pheno_PA)] = 0
+pheno_PA$MET <- pheno_PA$act_mod + pheno_PA$act_int + pheno_PA$act_lig
+
+fhs_diet_with_cellsVars <- merge(fhs_diet_with_cellsVars, pheno_PA, by="shareid")
+
 ## Add family ID
 load("U:/Estudis/B64_DIAMETR/Dades/FHS/framingham_byFamilyID.RData")
 # framingham_family
@@ -53,6 +64,6 @@ fhs_diet_with_cellsVars_fam <- merge(fhs_diet_with_cellsVars, framingham_family,
 
 library(tidyr)
 fhs_diet_with_cellsVars_fam <- fhs_diet_with_cellsVars_fam  %>% drop_na(c(mds,mmds,rmed,hdi2015,dashf,hpdi))
-fhs_diet_with_cellsVars_fam <- fhs_diet_with_cellsVars_fam[,-48]
+# fhs_diet_with_cellsVars_fam <- fhs_diet_with_cellsVars_fam[,-48]
 names(fhs_diet_with_cellsVars_fam)[9] <- "sex"
 save(fhs_diet_with_cellsVars_fam, file = "U:/Estudis/B64_DIAMETR/Dades/FHS/fhs_diet_cellsVarsFam.RData")
