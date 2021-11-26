@@ -18,4 +18,7 @@ fhs_pheno$BMI <- NA
 for(i in 1:nrow(fhs_pheno)){
   fhs_pheno[i, which(colnames(fhs_pheno)=="BMI")] <- fhs_pheno[i, which(colnames(fhs_pheno)=="weight")] / ((fhs_pheno[i, which(colnames(fhs_pheno)=="height")])/100)^2
 }
+fhs_pheno <- fhs_pheno[,-52]
+fhs_pheno$family_ID <- as.character(fhs_pheno$family_ID)
+fhs_pheno$smoke <- as.character(fhs_pheno$smoke)
 save(fhs_pheno, file = "/home/jdominguez1/B64_DIAMETR/Dades/FHS/fhs_diet_cellsVarsFam.RData")
