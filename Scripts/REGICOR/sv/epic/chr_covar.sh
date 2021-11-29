@@ -1,3 +1,3 @@
-sex
-family_ID
-smoke
+sexe
+smoke_6_b
+diab_b

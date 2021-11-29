@@ -76,23 +76,23 @@ print(mt_val[1:3,1:3])
 
 
 print("Same dim")
-if(identical(rownames(mt_val), pheno$Slide)==T)
+if(identical(rownames(mt_val), pheno$sample_name)==T)
 {
-  mt_val <- mt_val[pheno$Slide,]
-  identical(rownames(mt_val), pheno$Slide)
+  mt_val <- mt_val[pheno$sample_name,]
+  identical(rownames(mt_val), pheno$sample_name)
 }
 
-if(identical(pheno$Slide, rownames(mt_val))==F)
+if(identical(pheno$sample_name, rownames(mt_val))==F)
 {
-  mt_val <- mt_val[which(rownames(mt_val)%in%pheno$Slide==T),]
-  pheno <- pheno[which(pheno$Slide%in%rownames(mt_val)==T),]
-  mt_val <- mt_val[pheno$Slide,]
-  identical(pheno$Slide, rownames(mt_val))
+  mt_val <- mt_val[which(rownames(mt_val)%in%pheno$sample_name==T),]
+  pheno <- pheno[which(pheno$sample_name%in%rownames(mt_val)==T),]
+  mt_val <- mt_val[pheno$sample_name,]
+  identical(pheno$sample_name, rownames(mt_val))
 }
 
 num_covariates
 print("Pheno variables")
-pheno <- pheno[c(num_covariates, chr_covariates, "Slide", x)]
+pheno <- pheno[c(num_covariates, chr_covariates, "sample_name", x)]
 print(head(pheno))
 print(names(pheno)) 
 pheno <- na.omit(pheno)
@@ -100,8 +100,8 @@ print(dim(pheno))
 
 
 print("mt_val_matrix_t")
-mt_val <- mt_val[which(rownames(mt_val)%in%pheno$Slide),]
-pheno <- pheno[which(pheno$Slide%in%rownames(mt_val)),]
+mt_val <- mt_val[which(rownames(mt_val)%in%pheno$sample_name),]
+pheno <- pheno[which(pheno$sample_name%in%rownames(mt_val)),]
 mt_val <- as.matrix(mt_val)
 mt_val <- t(mt_val)
 
@@ -132,7 +132,7 @@ print(head(mod0))
 
 print(str(pheno))
 
-print(identical(pheno$Slide, colnames(mt_val)))
+print(identical(pheno$sample_name, colnames(mt_val)))
 
 dim(mt_val)
 dim(na.omit(mt_val))
