@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J model_fhs_hpdi
-#SBATCH -o model_fhs_hpdi.out
-#SBATCH -e model_fhs_hpdi.err
+#SBATCH -J hpdi_fhs_model
+#SBATCH -o hpdi_fhs_model.out
+#SBATCH -e hpdi_fhs_model.err
 #SBATCH -p long
 
 

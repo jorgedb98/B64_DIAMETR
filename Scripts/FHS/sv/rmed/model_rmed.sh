@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J model_fhs_rmed
-#SBATCH -o model_fhs_rmed.out
-#SBATCH -e model_fhs_rmed.err
+#SBATCH -J rmed_fhs_model
+#SBATCH -o rmed_fhs_model.out
+#SBATCH -e rmed_fhs_model.err
 #SBATCH -p long
 
 

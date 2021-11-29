@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J model_fhs_mmds
-#SBATCH -o model_fhs_mmds.out
-#SBATCH -e model_fhs_mmds.err
+#SBATCH -J mmds_fhs_model
+#SBATCH -o mmds_fhs_model.out
+#SBATCH -e mmds_fhs_model.err
 #SBATCH -p long
 
 

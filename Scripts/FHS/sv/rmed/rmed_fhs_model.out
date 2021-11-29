@@ -1,0 +1,110 @@
+WARNING: ignoring environment value of R_HOME
+[1] "Mon Nov 29 11:44:13 2021"
+[1] "libraries"
+[1] "loading files"
+[1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/rmed/pheno_sva_2.csv"
+[1] "/home/jdominguez1/meth/mt_value_n_no_extrem_value_analysis.RData"
+[1] "rmed"
+[1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/rmed/num_covar.sh"
+[1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/rmed/chr_covar.sh"
+[1] "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/rmed"
+[1] "model_2sva_rmed"
+[1] "Load Pheno"
+         CD8T       CD4T         NK       Bcell       Mono      Gran age
+1 0.000000000 0.21292473 0.07889540 0.007258509 0.17627044 0.5114801  67
+2 0.001040759 0.11087761 0.13638718 0.036475088 0.08182578 0.6431030  72
+3 0.000000000 0.27973146 0.10197352 0.012998972 0.13679723 0.4448398  66
+4 0.009870351 0.08959521 0.02725115 0.049313647 0.07278174 0.7433519  63
+5 0.039606166 0.12969353 0.01457524 0.037223957 0.07758074 0.7045845  74
+6 0.034962906 0.05486569 0.19303464 0.079010385 0.12189220 0.5126549  67
+       BMI       MET sex family_ID smoke             Slide rmed          sva1
+1 26.82741   42.0000   1         0 never 9023786060_R01C02   12  0.0142611202
+2 29.96727  556.5000   1         0 never 8691803131_R04C01   10 -0.0067142505
+3 23.96294  147.0000   1        11 never 8942334084_R05C01    9 -0.0321951574
+4 28.47092  713.4167   2        12 never 8942289149_R03C02   10  0.0221007443
+5 37.67500 2590.0000   2        13 never 8691811023_R04C02    4 -0.0128633635
+6 29.68192   84.0000   2        15 never 8691811098_R03C02    4  0.0003092726
+          sva2
+1  0.003564512
+2 -0.013548021
+3  0.003669760
+4 -0.028882581
+5 -0.012860810
+6  0.013761727
+[1] "Load covariates"
+     V1
+1  CD8T
+2  CD4T
+3    NK
+4 Bcell
+5  Mono
+6  Gran
+7   age
+8   BMI
+9   MET
+         V1
+1       sex
+2 family_ID
+3     smoke
+[1] "free_text"
+[1] "Load methylation data - mvals"
+                  cg01707559 cg02004872  cg02494853
+8221924002_R01C01  0.7586217  0.2871778 -0.51808342
+8221924002_R01C02 -0.5950692 -1.5586010  0.04942762
+8221924002_R02C01 -1.0404658 -1.0973081 -0.46112379
+[1] "Same dim"
+[1] TRUE
+[1] "Dims de mt_val"
+[1]   1853 483656
+[1] "Pheno variables"
+         CD8T       CD4T         NK       Bcell       Mono      Gran age
+1 0.000000000 0.21292473 0.07889540 0.007258509 0.17627044 0.5114801  67
+2 0.001040759 0.11087761 0.13638718 0.036475088 0.08182578 0.6431030  72
+3 0.000000000 0.27973146 0.10197352 0.012998972 0.13679723 0.4448398  66
+4 0.009870351 0.08959521 0.02725115 0.049313647 0.07278174 0.7433519  63
+5 0.039606166 0.12969353 0.01457524 0.037223957 0.07758074 0.7045845  74
+6 0.034962906 0.05486569 0.19303464 0.079010385 0.12189220 0.5126549  67
+       BMI       MET sex family_ID smoke             Slide rmed
+1 26.82741   42.0000   1         0 never 9023786060_R01C02   12
+2 29.96727  556.5000   1         0 never 8691803131_R04C01   10
+3 23.96294  147.0000   1        11 never 8942334084_R05C01    9
+4 28.47092  713.4167   2        12 never 8942289149_R03C02   10
+5 37.67500 2590.0000   2        13 never 8691811023_R04C02    4
+6 29.68192   84.0000   2        15 never 8691811098_R03C02    4
+ [1] "CD8T"      "CD4T"      "NK"        "Bcell"     "Mono"      "Gran"     
+ [7] "age"       "BMI"       "MET"       "sex"       "family_ID" "smoke"    
+[13] "Slide"     "rmed"     
+[1] 1853   14
+[1] "cpgs to analyze"
+[1]   1853 483656
+[1] 483656
+[1] "diet=x1"
+[1] 12 10  9 10  4
+[1] "covar=X"
+[1] "cbind(pheno$CD8T,pheno$CD4T,pheno$NK,pheno$Bcell,pheno$Mono,pheno$Gran,pheno$age,pheno$BMI,pheno$MET,factor(pheno$sex),factor(pheno$family_ID),factor(pheno$smoke))"
+[1] "Trying what is in X"
+ [1] "CD8T"      "CD4T"      "NK"        "Bcell"     "Mono"      "Gran"     
+ [7] "age"       "BMI"       "MET"       "sex"       "family_ID" "smoke"    
+[1] "info prior to ewas"
+[1] TRUE
+[1]   1853 483656
+[1]      0 483656
+[1] 1853   14
+[1] 1853   14
+'data.frame':	1853 obs. of  14 variables:
+ $ CD8T     : num  0 0.00104 0 0.00987 0.03961 ...
+ $ CD4T     : num  0.2129 0.1109 0.2797 0.0896 0.1297 ...
+ $ NK       : num  0.0789 0.1364 0.102 0.0273 0.0146 ...
+ $ Bcell    : num  0.00726 0.03648 0.013 0.04931 0.03722 ...
+ $ Mono     : num  0.1763 0.0818 0.1368 0.0728 0.0776 ...
+ $ Gran     : num  0.511 0.643 0.445 0.743 0.705 ...
+ $ age      : int  67 72 66 63 74 67 75 68 67 69 ...
+ $ BMI      : num  26.8 30 24 28.5 37.7 ...
+ $ MET      : num  42 556 147 713 2590 ...
+ $ sex      : int  1 1 1 2 2 2 2 2 1 1 ...
+ $ family_ID: int  0 0 11 12 13 15 0 18 28 33 ...
+ $ smoke    : chr  "never" "never" "never" "never" ...
+ $ Slide    : chr  "9023786060_R01C02" "8691803131_R04C01" "8942334084_R05C01" "8942289149_R03C02" ...
+ $ rmed     : int  12 10 9 10 4 4 9 9 6 11 ...
+NULL
+[1] "Linear regresion - EWAS"

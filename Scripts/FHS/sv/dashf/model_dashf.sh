@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -J model_fhs_dashf
-#SBATCH -o model_fhs_dashf.out
-#SBATCH -e model_fhs_dashf.err
+#SBATCH -J dashf_fhs_model
+#SBATCH -o dashf_fhs_model.out
+#SBATCH -e dashf_fhs_model.err
 #SBATCH -p long
 
 

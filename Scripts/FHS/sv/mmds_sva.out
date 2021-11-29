@@ -4520,3 +4520,11 @@ NULL
 [1] 1853  945
 [1] "svas"
 [1] "model.matrix(~ mmds + CD8T + CD4T + NK + Bcell + Mono + Gran + age + BMI + MET + factor( sex ) + factor( family_ID ) + factor( smoke ),data=pheno)"
+[1] 2
+[1] "aqui1"
+Number of significant surrogate variables is:  2 
+Iteration (out of 5 ):1  2  3  4  5  [1] "aqui2"
+[1] "hi2"
+[1] "Let's save it!"
+[1] "Fri Nov 26 13:45:33 2021"
+[1] "###############################################THE END###############################################"
