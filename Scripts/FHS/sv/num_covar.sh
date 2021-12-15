@@ -5,5 +5,4 @@ Bcell
 Mono
 Gran
 age
-BMI
-MET
+NUT_CALOR

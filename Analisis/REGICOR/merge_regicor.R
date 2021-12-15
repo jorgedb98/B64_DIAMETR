@@ -24,10 +24,11 @@ cells_REGICOR <- rbind(cells_450, cells_EPIC)
 cells_REGICOR <- cells_REGICOR[,-c(1,10,11)]
 metildiet_subset_cells <- merge(cells_REGICOR, metildiet_subset, by="Sample_ID")
 save(metildiet_subset_cells, file = "/Estudis/B64_DIAMETR/Dades/metildiet_with_cells.RData")
-# There are 938 from 944 expected.
+# There are 927 from 944 expected.
 
 
 ##########################################################
+options(max.print = 1500)
 names(metildiet_subset_cells)
 
 # [1] "Sample_ID"          "BMI"                "CD8T"               "CD4T"               "NK"                
@@ -287,7 +288,7 @@ names(metildiet_subset_cells)
 # dashf_b
 # hpdi_b
 
-metildiet_study <- metildiet_subset_cells[,c(1:51,53,998,1017,1061,1084,1112,1153)]
+metildiet_study <- metildiet_subset_cells[,c(1:51,53,288,998,1017,1061,1084,1112,1153)]
 names(metildiet_study)
 
 # [1] "Sample_ID"     "BMI"           "CD8T"          "CD4T"          "NK"            "Bcell"        
@@ -301,9 +302,9 @@ names(metildiet_study)
 # [49] "geaf_mod_b"    "geaf_lig_b"    "itbdret_b"     "mds_b"         "mmds_b"        "rmed_b"       
 # [55] "hdi_b"         "dashf_b"       "hpdi_b"  
 
-# DEvide into pool_Id for analysis
-metildiet_study_450 <- metildiet_study[metildiet_study$Pool_ID=="450K",]
-metildiet_study_epic <- metildiet_study[metildiet_study$Pool_ID=="EPIC",]
+# Devide into pool_Id for analysis
+metildiet_study_450 <- metildiet_study[metildiet_study$pool_id=="450K",]
+metildiet_study_epic <- metildiet_study[metildiet_study$pool_id=="EPIC",]
 
 # Remove people having NA in scores
 library(tidyr)
@@ -311,5 +312,6 @@ metildiet_study_450 <- metildiet_study_450 %>% drop_na(c(mds_b, mmds_b, rmed_b, 
 metildiet_study_epic <- metildiet_study_epic %>% drop_na(c(mds_b, mmds_b, rmed_b, hdi_b, dashf_b, hpdi_b))
 
 save(metildiet_study, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars.RData")
+# metildiet_study still holds the NAs in diet scores
 save(metildiet_study_450, file="U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_450.RData")
 save(metildiet_study_epic, file = "U:/Estudis/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars_epic.RData")
