@@ -5,7 +5,4 @@ Bcell
 Mono
 Gran
 edat_b
-BMI
-X1
-sva1
-sva2
+kcal_b

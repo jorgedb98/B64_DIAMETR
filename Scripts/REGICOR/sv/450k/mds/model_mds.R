@@ -5,7 +5,6 @@ date()
 print("libraries")
 library(parallel)
 
-
 print("loading files")
 pheno.file=commandArgs()[6]
 print(pheno.file)
@@ -123,7 +122,7 @@ print("Linear regresion - EWAS")
 
 res <- mclapply(cpg, function(i){
   y <- mt_val[,i]
-  mod <- glm(y ~ x1 + X ,family="gaussian",  data = cbind(pheno, mt_val))
+  mod <- glm(y ~ x1 + X,family="gaussian",  data = cbind(pheno, mt_val))
   coef <- (summary(mod)$coefficients)[2,"Estimate"]
   sd <- (summary(mod)$coefficients)[2,"Std. Error"]
   pval <- (summary(mod)$coefficients)[2,4]
@@ -138,7 +137,7 @@ print("Let's save it!")
 res <- matrix(unlist(res), ncol=3, byrow=T)
 head(res)
 colnames(res) <- c("Coefficient","SE", "Pvalue")
-rownames(res) <- cpg[1:1000]
+rownames(res) <- cpg
 res <- as.data.frame(res)
 res$cpg<-rownames(res)
 res<-res[order(res[,3]),]

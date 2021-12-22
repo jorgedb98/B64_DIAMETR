@@ -1,5 +1,5 @@
 WARNING: ignoring environment value of R_HOME
-[1] "Mon Nov 29 14:56:52 2021"
+[1] "Tue Dec 21 16:39:22 2021"
 [1] "libraries"
 [1] "loading files"
 [1] "/home/jdominguez1/B64_DIAMETR/Dades/REGICOR/metildiet_with_cells_and_rightVars.RData"
@@ -10,7 +10,7 @@ WARNING: ignoring environment value of R_HOME
 [1] "/home/jdominguez1/B64_DIAMETR/Scripts/REGICOR/sv/epic/mds"
 [1] "pheno_sva_"
 [1] "Load Pheno"
-'data.frame':	927 obs. of  58 variables:
+'data.frame':	927 obs. of  59 variables:
  $ Sample_ID    : chr  "A2200000019007052802" "A2200000021007052801" "A2200000024007052802" "A2200000068007052803" ...
  $ BMI          : num  26.4 25.3 21.4 26.5 36.5 ...
  $ CD8T         : num  0.0435 0 0.0325 0.0762 0.0702 ...
@@ -63,6 +63,7 @@ WARNING: ignoring environment value of R_HOME
  $ geaf_mod_b   : num  0.8 0 0 30.8 49.5 ...
  $ geaf_lig_b   : num  0 0 5.2 90 33.4 252 35 0 0 59.5 ...
  $ itbdret_b    : num  1.11 1.03 1.27 1.06 1.58 ...
+ $ kcal_b       : num  2062 2909 1977 2132 3329 ...
  $ mds_b        : num  6 6 4 7 5 4 4 3 5 5 ...
  $ mmds_b       : num  11 13 8 18 15 14 12 9 12 12 ...
  $ rmed_b       : num  11 11 8 10 9 6 8 6 10 10 ...
@@ -78,13 +79,12 @@ WARNING: ignoring environment value of R_HOME
 5   Mono
 6   Gran
 7 edat_b
-8    BMI
+8 kcal_b
          V1
 1      sexe
 2 smoke_6_b
-3    diab_b
 [1] 8
-[1] 3
+[1] 2
 [1] "free_text"
 [1] "Load methylation data - mvals"
                     cg18478105   cg09835024   cg14361672
@@ -93,103 +93,88 @@ WARNING: ignoring environment value of R_HOME
 202884930006_R03C01  0.2409467 -0.007322988 -0.005791398
 [1] "Same dim"
 [1] TRUE
-[1] 272  58
-[1] "CD8T"   "CD4T"   "NK"     "Bcell"  "Mono"   "Gran"   "edat_b" "BMI"   
-[1] "sexe"      "smoke_6_b" "diab_b"   
+[1] 272  59
+[1] "CD8T"   "CD4T"   "NK"     "Bcell"  "Mono"   "Gran"   "edat_b" "kcal_b"
+[1] "sexe"      "smoke_6_b"
 [1] "Pheno variables"
-        CD8T       CD4T         NK      Bcell       Mono      Gran edat_b   BMI
-1 0.04350366 0.08545131 0.00000000 0.05613712 0.08011592 0.7464212     57 26.45
-2 0.00000000 0.11214064 0.03599944 0.05925594 0.09053182 0.7030461     53 25.31
-3 0.03245120 0.20940282 0.06023382 0.09248124 0.06591815 0.5609833     49 21.36
-4 0.07619456 0.13935693 0.04112349 0.02007543 0.07214048 0.6656603     46 26.49
-5 0.07022243 0.14573964 0.05994056 0.06211228 0.06940664 0.5857465     53 36.51
-6 0.07603683 0.15284621 0.05520254 0.04458735 0.10648565 0.5588166     43 26.02
-  sexe smoke_6_b diab_b         sample_name mds_b
-1    1         0   <NA> 201004220144_R08C01     6
-2    0         1   <NA> 202995740157_R07C01     6
-3    0         1   <NA> 201004220160_R02C01     4
-4    0         0      0 200999660165_R06C01     7
-5    1         0   <NA> 202995640019_R04C01     5
-6    1         1      1 201004220119_R04C01     4
+        CD8T       CD4T         NK      Bcell       Mono      Gran edat_b
+1 0.04350366 0.08545131 0.00000000 0.05613712 0.08011592 0.7464212     57
+2 0.00000000 0.11214064 0.03599944 0.05925594 0.09053182 0.7030461     53
+3 0.03245120 0.20940282 0.06023382 0.09248124 0.06591815 0.5609833     49
+4 0.07619456 0.13935693 0.04112349 0.02007543 0.07214048 0.6656603     46
+5 0.07022243 0.14573964 0.05994056 0.06211228 0.06940664 0.5857465     53
+6 0.07603683 0.15284621 0.05520254 0.04458735 0.10648565 0.5588166     43
+    kcal_b sexe smoke_6_b         sample_name mds_b
+1 2062.499    1         0 201004220144_R08C01     6
+2 2908.970    0         1 202995740157_R07C01     6
+3 1976.848    0         1 201004220160_R02C01     4
+4 2132.032    0         0 200999660165_R06C01     7
+5 3329.096    1         0 202995640019_R04C01     5
+6 3278.026    1         1 201004220119_R04C01     4
  [1] "CD8T"        "CD4T"        "NK"          "Bcell"       "Mono"       
- [6] "Gran"        "edat_b"      "BMI"         "sexe"        "smoke_6_b"  
-[11] "diab_b"      "sample_name" "mds_b"      
-[1] 262  13
+ [6] "Gran"        "edat_b"      "kcal_b"      "sexe"        "smoke_6_b"  
+[11] "sample_name" "mds_b"      
+[1] 269  12
 [1] "mt_val_matrix_t"
 [1] "models"
-[1] "num.sv(na.omit(mt_val),model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + BMI + factor( sexe ) + factor( smoke_6_b ) + factor( diab_b ),data=pheno)method=\"leek\",seed=123)"
-[1] "sva(na.omit(mt_val),model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + BMI + factor( sexe ) + factor( smoke_6_b ) + factor( diab_b ),data=pheno),model.matrix(~ CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + BMI + factor( sexe ) + factor( smoke_6_b ) + factor( diab_b ),data=pheno)method=\"leek\")"
-   (Intercept) mds_b       CD8T      CD4T         NK      Bcell       Mono
-4            1     7 0.07619456 0.1393569 0.04112349 0.02007543 0.07214048
-6            1     4 0.07603683 0.1528462 0.05520254 0.04458735 0.10648565
-10           1     5 0.04813018 0.1515593 0.01951705 0.01959071 0.07647830
-11           1     1 0.03932146 0.1515411 0.04553743 0.02990477 0.04169125
-14           1     6 0.06146207 0.1212866 0.02162189 0.02228318 0.07623687
-15           1     3 0.01572616 0.1030858 0.09142796 0.04213294 0.12709128
-        Gran edat_b   BMI factor(sexe)1 factor(smoke_6_b)1 factor(smoke_6_b)2
-4  0.6656603     46 26.49             0                  0                  0
-6  0.5588166     43 26.02             1                  1                  0
-10 0.6831601     53 26.44             1                  0                  0
-11 0.6924453     48 28.06             0                  1                  0
-14 0.7061815     57 27.97             0                  0                  1
-15 0.6220528     42 31.41             0                  1                  0
-   factor(diab_b)1
-4                0
-6                1
-10               0
-11               0
-14               0
-15               0
-   (Intercept)       CD8T      CD4T         NK      Bcell       Mono      Gran
-4            1 0.07619456 0.1393569 0.04112349 0.02007543 0.07214048 0.6656603
-6            1 0.07603683 0.1528462 0.05520254 0.04458735 0.10648565 0.5588166
-10           1 0.04813018 0.1515593 0.01951705 0.01959071 0.07647830 0.6831601
-11           1 0.03932146 0.1515411 0.04553743 0.02990477 0.04169125 0.6924453
-14           1 0.06146207 0.1212866 0.02162189 0.02228318 0.07623687 0.7061815
-15           1 0.01572616 0.1030858 0.09142796 0.04213294 0.12709128 0.6220528
-   edat_b   BMI factor(sexe)1 factor(smoke_6_b)1 factor(smoke_6_b)2
-4      46 26.49             0                  0                  0
-6      43 26.02             1                  1                  0
-10     53 26.44             1                  0                  0
-11     48 28.06             0                  1                  0
-14     57 27.97             0                  0                  1
-15     42 31.41             0                  1                  0
-   factor(diab_b)1
-4                0
-6                1
-10               0
-11               0
-14               0
-15               0
-'data.frame':	262 obs. of  13 variables:
- $ CD8T       : num  0.0762 0.076 0.0481 0.0393 0.0615 ...
- $ CD4T       : num  0.139 0.153 0.152 0.152 0.121 ...
- $ NK         : num  0.0411 0.0552 0.0195 0.0455 0.0216 ...
- $ Bcell      : num  0.0201 0.0446 0.0196 0.0299 0.0223 ...
- $ Mono       : num  0.0721 0.1065 0.0765 0.0417 0.0762 ...
- $ Gran       : num  0.666 0.559 0.683 0.692 0.706 ...
- $ edat_b     : num  46 43 53 48 57 42 65 51 48 55 ...
- $ BMI        : num  26.5 26 26.4 28.1 28 ...
- $ sexe       : num  0 1 1 0 0 0 1 0 1 1 ...
- $ smoke_6_b  : num  0 1 0 1 2 1 0 0 0 0 ...
- $ diab_b     : Factor w/ 2 levels "0","1": 1 2 1 1 1 1 1 1 1 1 ...
- $ sample_name: chr  "200999660165_R06C01" "201004220119_R04C01" "201490020041_R08C01" "202995640003_R04C01" ...
- $ mds_b      : num  7 4 5 1 6 3 3 4 5 6 ...
- - attr(*, "na.action")= 'omit' Named int [1:10] 1 2 3 5 7 8 9 12 31 60
-  ..- attr(*, "names")= chr [1:10] "1" "2" "3" "5" ...
+[1] "num.sv(na.omit(mt_val),model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + kcal_b + factor( sexe ) + factor( smoke_6_b ),data=pheno)method=\"leek\",seed=123)"
+[1] "sva(na.omit(mt_val),model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + kcal_b + factor( sexe ) + factor( smoke_6_b ),data=pheno),model.matrix(~ CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + kcal_b + factor( sexe ) + factor( smoke_6_b ),data=pheno)method=\"leek\")"
+  (Intercept) mds_b       CD8T       CD4T         NK      Bcell       Mono
+1           1     6 0.04350366 0.08545131 0.00000000 0.05613712 0.08011592
+2           1     6 0.00000000 0.11214064 0.03599944 0.05925594 0.09053182
+3           1     4 0.03245120 0.20940282 0.06023382 0.09248124 0.06591815
+4           1     7 0.07619456 0.13935693 0.04112349 0.02007543 0.07214048
+5           1     5 0.07022243 0.14573964 0.05994056 0.06211228 0.06940664
+6           1     4 0.07603683 0.15284621 0.05520254 0.04458735 0.10648565
+       Gran edat_b   kcal_b factor(sexe)1 factor(smoke_6_b)1 factor(smoke_6_b)2
+1 0.7464212     57 2062.499             1                  0                  0
+2 0.7030461     53 2908.970             0                  1                  0
+3 0.5609833     49 1976.848             0                  1                  0
+4 0.6656603     46 2132.032             0                  0                  0
+5 0.5857465     53 3329.096             1                  0                  0
+6 0.5588166     43 3278.026             1                  1                  0
+  (Intercept)       CD8T       CD4T         NK      Bcell       Mono      Gran
+1           1 0.04350366 0.08545131 0.00000000 0.05613712 0.08011592 0.7464212
+2           1 0.00000000 0.11214064 0.03599944 0.05925594 0.09053182 0.7030461
+3           1 0.03245120 0.20940282 0.06023382 0.09248124 0.06591815 0.5609833
+4           1 0.07619456 0.13935693 0.04112349 0.02007543 0.07214048 0.6656603
+5           1 0.07022243 0.14573964 0.05994056 0.06211228 0.06940664 0.5857465
+6           1 0.07603683 0.15284621 0.05520254 0.04458735 0.10648565 0.5588166
+  edat_b   kcal_b factor(sexe)1 factor(smoke_6_b)1 factor(smoke_6_b)2
+1     57 2062.499             1                  0                  0
+2     53 2908.970             0                  1                  0
+3     49 1976.848             0                  1                  0
+4     46 2132.032             0                  0                  0
+5     53 3329.096             1                  0                  0
+6     43 3278.026             1                  1                  0
+'data.frame':	269 obs. of  12 variables:
+ $ CD8T       : num  0.0435 0 0.0325 0.0762 0.0702 ...
+ $ CD4T       : num  0.0855 0.1121 0.2094 0.1394 0.1457 ...
+ $ NK         : num  0 0.036 0.0602 0.0411 0.0599 ...
+ $ Bcell      : num  0.0561 0.0593 0.0925 0.0201 0.0621 ...
+ $ Mono       : num  0.0801 0.0905 0.0659 0.0721 0.0694 ...
+ $ Gran       : num  0.746 0.703 0.561 0.666 0.586 ...
+ $ edat_b     : num  57 53 49 46 53 43 52 57 50 53 ...
+ $ kcal_b     : num  2062 2909 1977 2132 3329 ...
+ $ sexe       : num  1 0 0 0 1 1 1 1 0 1 ...
+ $ smoke_6_b  : num  0 1 1 0 0 1 0 0 2 0 ...
+ $ sample_name: chr  "201004220144_R08C01" "202995740157_R07C01" "201004220160_R02C01" "200999660165_R06C01" ...
+ $ mds_b      : num  6 6 4 7 5 4 4 3 5 5 ...
+ - attr(*, "na.action")= 'omit' Named int [1:3] 12 31 60
+  ..- attr(*, "names")= chr [1:3] "12" "35" "68"
 NULL
 [1] TRUE
-[1] 810793    262
-[1] 810793    262
-[1] 262  14
-[1] 262  13
+[1] 810793    269
+[1] 810793    269
+[1] 269  13
+[1] 269  12
 [1] "svas"
-[1] "model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + BMI + factor( sexe ) + factor( smoke_6_b ) + factor( diab_b ),data=pheno)"
-[1] 3
+[1] "model.matrix(~ mds_b + CD8T + CD4T + NK + Bcell + Mono + Gran + edat_b + kcal_b + factor( sexe ) + factor( smoke_6_b ),data=pheno)"
+[1] 7
 [1] "aqui1"
-Number of significant surrogate variables is:  3 
+Number of significant surrogate variables is:  7 
 Iteration (out of 5 ):1  2  3  4  5  [1] "aqui2"
 [1] "hi2"
 [1] "Let's save it!"
-[1] "Mon Nov 29 15:03:31 2021"
+[1] "Tue Dec 21 16:53:10 2021"
 [1] "###############################################THE END###############################################"

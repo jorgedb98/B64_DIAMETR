@@ -63,25 +63,25 @@ print(mt_val[1:3,1:3])
 
 
 print("Same dim")
-if(identical(rownames(mt_val), pheno$sample_name)==T)
+if(identical(rownames(mt_val), pheno$Slide)==T)
 {
-  mt_val <- mt_val[pheno$sample_name,]
-  identical(rownames(mt_val), pheno$sample_name)
+  mt_val <- mt_val[pheno$Slide,]
+  identical(rownames(mt_val), pheno$Slide)
 }
 
-if(identical(pheno$sample_name, rownames(mt_val))==F)
+if(identical(pheno$Slide, rownames(mt_val))==F)
 {
-  mt_val <- mt_val[which(rownames(mt_val)%in%pheno$sample_name==T),]
-  pheno <- pheno[which(pheno$sample_name%in%rownames(mt_val)==T),]
-  mt_val <- mt_val[pheno$sample_name,]
-  identical(pheno$sample_name, rownames(mt_val))
+  mt_val <- mt_val[which(rownames(mt_val)%in%pheno$Slide==T),]
+  pheno <- pheno[which(pheno$Slide%in%rownames(mt_val)==T),]
+  mt_val <- mt_val[pheno$Slide,]
+  identical(pheno$Slide, rownames(mt_val))
 }
 
 print("Dims de mt_val")
 print(dim(mt_val))
 
 print("Pheno variables")
-pheno <- pheno[c(num_covariates, chr_covariates, "sample_name", x)]
+pheno <- pheno[, c(num_covariates, chr_covariates, "Slide", x)]
 print(head(pheno))
 print(names(pheno)) 
 pheno <- na.omit(pheno)
@@ -112,45 +112,31 @@ colnames(X)<-c(num_covariates, chr_covariates)
 colnames(X)
 
 print("info prior to ewas")
-print(identical(rownames(mt_val), pheno$sample_name))
+print(identical(rownames(mt_val), pheno$Slide))
 print(dim(mt_val))
-print("Hay nas en mt_val????")
-print(is.na(mt_val))
-# print(dim(na.omit(mt_val)))
-# print(dim(pheno))
-# print(dim(na.omit(pheno)))
-# print(str(pheno))
+print(dim(na.omit(mt_val)))
+print(dim(pheno))
+print(dim(na.omit(pheno)))
+print(str(pheno))
 # mini_cpg <- cpg[1:2]
 # mini_mt <- mt_val[1:100,1:2]
-# 
-# print("Linear regresion - EWAS")
-# 
-# 
+
+print("Linear regresion - EWAS")
+
+# set.seed(123)
 # res <- mclapply(cpg, function(i){
-#   y <- mt_val[,i]
-#   mod <- glm(y ~ x1 + X ,family="gaussian",  data = cbind(pheno, mt_val))
-#   coef <- (summary(mod)$coefficients)[2,"Estimate"]
-#   sd <- (summary(mod)$coefficients)[2,"Std. Error"]
-#   pval <- (summary(mod)$coefficients)[2,4]
-#   out <- c(coef, sd,pval)
-#   names(out) <- c("Coefficient", "Sd", "P value")
+#   y <- mini_mtval[,i]
+#   mod <- glm(y ~ x1, family="gaussian")
+#   coef<- summary(mod)$coefficients[2,"Estimate"]
+#   se <- summary(mod)$coefficients[2,"Std. Error"]
+#   pval <- summary(mod)$coefficients[2,"Pr(>|z|)"]
+#   out <- c(coef, se, pval)
+#   names(out) <- c("Coefficient","SE", "Pvalue")
 #   out
+#   dim(mod)
 # })
 # 
-# head(res)
-# 
-# print("Let's save it!")
-# res <- matrix(unlist(res), ncol=3, byrow=T)
-# head(res)
-# colnames(res) <- c("Coefficient","SE", "Pvalue")
-# rownames(res) <- cpg
-# res <- as.data.frame(res)
-# res$cpg<-rownames(res)
-# res<-res[order(res[,3]),]
-# res<-res[,c(4,1:3)]
-# save(res, file=paste(free_text, out.file, ".RData", sep=""))
-# write.table(res, file=paste(free_text, out.file, ".csv", sep=""), row.names=F, col.names=T, sep=";", quote=F)
-
+# res
 
 ###############
 #### otra forma de hacerlo CON SOLO EL PRIMER CPG
@@ -222,6 +208,33 @@ print(is.na(mt_val))
 
 
 
+res <- mclapply(cpg, function(i){
+  y <- mt_val[,i]
+  mod <- glm(y ~ x1 + X ,family="gaussian",  data = cbind(pheno, mt_val))
+  coef <- (summary(mod)$coefficients)[2,"Estimate"]
+  sd <- (summary(mod)$coefficients)[2,"Std. Error"]
+  pval <- (summary(mod)$coefficients)[2,4]
+  out <- c(coef, sd,pval)
+  names(out) <- c("Coefficient", "Sd", "P value")
+  out
+})
+
+head(res)
+
+print("Let's save it!")
+res <- matrix(unlist(res), ncol=3, byrow=T)
+head(res)
+colnames(res) <- c("Coefficient","SE", "Pvalue")
+rownames(res) <- cpg
+res <- as.data.frame(res)
+res$cpg<-rownames(res)
+res<-res[order(res[,3]),]
+res<-res[,c(4,1:3)]
+save(res, file=paste(free_text, out.file, ".RData", sep=""))
+write.table(res, file=paste(free_text, out.file, ".csv", sep=""), row.names=F, col.names=T, sep=";", quote=F)
+
+
 date()
+
 
 print("###############################################THE END###############################################")

@@ -4,6 +4,7 @@ NK
 Bcell
 Mono
 Gran
-age
-BMI
-MET
+AGE
+F60ENRGY
+sva1
+sva2

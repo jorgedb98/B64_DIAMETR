@@ -147,15 +147,21 @@ n.sv
 print("aqui1")
 svobj <- sva(na.omit(mt_val), mod, mod0, n.sv = n.sv)
 print(("aqui2"))
-pheno <- cbind(pheno, svobj$sv)
+pheno_sv <- cbind(pheno, svobj$sv)
 print("hi2")
 
 n.sv = n.sv
 
 
 print("Let's save it!")
-names(pheno)[(ncol(pheno)-1)] <- "sva1"
-names(pheno)[ncol(pheno)] <- "sva2"
+
+j <- ncol(pheno)+1
+
+for(i in 1:n.sv){
+  names(pheno_sv)[j] <- paste("sva", i, sep="")
+  j <- j+1
+}
+
 
 # # Select where to save the file
 # if(x == "mds"){
@@ -172,7 +178,7 @@ names(pheno)[ncol(pheno)] <- "sva2"
 #   free.text <- "/home/jdominguez1/B64_DIAMETR/Scripts/FHS/sv/hpdi"
 # }
 
-write.table(pheno, file=paste(free_text, out.file, n.sv, ".csv", sep=""), row.names=F, col.names=T, sep=",")
+write.table(pheno_sv, file=paste(free_text, out.file, n.sv, ".csv", sep=""), row.names=F, col.names=T, sep=",")
 
 
 date()
