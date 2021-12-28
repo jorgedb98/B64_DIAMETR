@@ -1,0 +1,28 @@
+Loading required package: Matrix
+
+Attaching package: ‘nlme’
+
+The following object is masked from ‘package:lme4’:
+
+    lmList
+
+
+Attaching package: ‘lmerTest’
+
+The following object is masked from ‘package:lme4’:
+
+    lmer
+
+The following object is masked from ‘package:stats’:
+
+    step
+
+boundary (singular) fit: see ?isSingular
+Warning messages:
+1: Some predictor variables are on very different scales: consider rescaling 
+2: Some predictor variables are on very different scales: consider rescaling 
+
+Correlation matrix not shown by default, as p = 13 > 12.
+Use print(x, correlation=TRUE)  or
+    vcov(x)        if you need it
+
