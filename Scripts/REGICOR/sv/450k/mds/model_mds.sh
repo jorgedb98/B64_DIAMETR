@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -J mds_reg450k_model
-#SBATCH -o mds_reg450k_model.out
-#SBATCH -e mds_reg450k_model.err
+#SBATCH -o logs/mds_reg450k_model.out
+#SBATCH -e logs/mds_reg450k_model.err
 #SBATCH -p long
 
 
