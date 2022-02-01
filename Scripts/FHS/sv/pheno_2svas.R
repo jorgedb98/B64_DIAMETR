@@ -35,8 +35,7 @@ print(out.file)
 
 
 print("Load Pheno")
-pheno <- load(pheno.file)
-pheno <- get(pheno)
+pheno <- get(load(pheno.file))
 str(pheno)
 
 
@@ -91,10 +90,14 @@ if(identical(pheno$Slide, rownames(mt_val))==F)
 }
 
 num_covariates
+chr_covariates
+x
+my_vars <- c(num_covariates, chr_covariates, "Slide",x)
+my_vars
 print("Pheno variables")
-pheno <- pheno[c(num_covariates, chr_covariates, "Slide", x)]
+pheno <- pheno[, my_vars]
 print(head(pheno))
-print(names(pheno)) 
+print(names(pheno))
 pheno <- na.omit(pheno)
 print(dim(pheno))
 
@@ -120,16 +123,12 @@ mod0 <- paste("model.matrix(~", mod0, ",data=pheno)", sep="")
 
 part1 <- mod
 part2 <- mod0
- 
+
 mod <- eval(parse(text = mod))
 mod0 <- eval(parse(text = mod0))
 
-print(paste('num.sv(na.omit(mt_val),', part1, 'method="leek",seed=123)', sep=""))
-print(paste('sva(na.omit(mt_val),', part1, ',', part2, 'method="leek")', sep=""))
-
-print(head(mod))
-print(head(mod0))
-
+pheno$NUT_CALOR <- pheno$NUT_CALOR/10000
+pheno$family_ID <- as.factor(pheno$family_ID)
 print(str(pheno))
 
 print(identical(pheno$Slide, colnames(mt_val)))
@@ -138,11 +137,9 @@ dim(mt_val)
 dim(na.omit(mt_val))
 dim(mod)
 dim(mod0)
-
-
 print("svas")
-part1
-n.sv <- num.sv(na.omit(mt_val), mod, method="leek",seed=123)
+str(mod)
+n.sv <- num.sv(na.omit(mt_val), (mod), method="leek",seed=123)
 n.sv
 print("aqui1")
 svobj <- sva(na.omit(mt_val), mod, mod0, n.sv = n.sv)
