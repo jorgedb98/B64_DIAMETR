@@ -3,7 +3,7 @@
 
 # Load data with family info
 
-framingham_family <- read.csv(file = "/home/jdominguez1/B64_DIAMETR/Dades/phs000007.v32.pht000183.v13.p13.Framingham_Pedigree.MULTI_fine.csv",
+framingham_family <- read.csv(file = "/home/jdominguez1/B64_DIAMETR/Dades/FHS/phs000007.v32.pht000183.v13.p13.Framingham_Pedigree.MULTI_fine.csv",
                               header = T)
 
 # remove empty/useless rows
@@ -14,7 +14,7 @@ framingham_family <- tail(framingham_family, -1)
 rownames(framingham_family) <- NULL
 
 #Saving dataframe with nicer format
-save(framingham_family, file ="/home/jdominguez1/B64_DIAMETR/Analisis/framingham_family_relationship_updated.RData")
+save(framingham_family, file ="/home/jdominguez1/B64_DIAMETR/Dades/framingham_family_relationship_updated.RData")
 
 # Creating family ID variable. We will consider that n individuals belong to the
 # same family ID if having at least same father ID OR mother ID (half-siblings).
