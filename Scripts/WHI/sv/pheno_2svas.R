@@ -15,7 +15,7 @@ date()
 
 print("libraries")
 library(sva)
-
+library(minfi)
 
 print("loading files")
 pheno.file=commandArgs()[6]
@@ -37,6 +37,7 @@ print(out.file)
 print("Load Pheno")
 pheno <- load(pheno.file)
 pheno <- get(pheno)
+pheno <- as.data.frame(pheno)
 str(pheno)
 
 
@@ -89,9 +90,10 @@ if(identical(pheno$Slide, rownames(mt_val))==F)
   identical(pheno$Slide, rownames(mt_val))
 }
 
-num_covariates
+my_vars <- c(num_covariates, chr_covariates, "Slide",x)
+my_vars
 print("Pheno variables")
-pheno <- pheno[c(num_covariates, chr_covariates, "Slide", x)]
+pheno <- pheno[, my_vars]
 print(head(pheno))
 print(names(pheno)) 
 pheno <- na.omit(pheno)
