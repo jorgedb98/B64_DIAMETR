@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -J hpdi_reg450k_model
-#SBATCH -o hpdi_reg450k_model.out
-#SBATCH -e hpdi_reg450k_model.err
+#SBATCH -o logs/hpdi_reg450k_model.out
+#SBATCH -e logs/hpdi_reg450k_model.err
 #SBATCH -p long
 
 
