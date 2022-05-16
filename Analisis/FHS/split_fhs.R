@@ -1,3 +1,5 @@
+## Splitting the M-values data matrix for quicker EWAS performance
+
 fhs_mt <- get(load("/home/jdominguez1/meth/mt_value_n_no_extrem_value_analysis.RData"))
 
 div<-ncol(fhs_mt)%/%10000
