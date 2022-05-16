@@ -1,0 +1,9 @@
+Loading required package: mgcv
+Loading required package: nlme
+This is mgcv 1.8-37. For overview type 'help("mgcv-package")'.
+Loading required package: genefilter
+Loading required package: BiocParallel
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '/home/jdominguez1/B64_DIAMETR/Scripts/WHI/sv_bmi/num_covar_mmds.sh': No such file or directory

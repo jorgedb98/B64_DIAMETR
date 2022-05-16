@@ -1,0 +1,12 @@
+WARNING: ignoring environment value of R_HOME
+[1] "Loading libraries"
+[1] "Loading files"
+Bacon-object containing 1 set(s) of 53 test-statistics.
+...estimated bias: -0.067.
+...estimated inflation: 2.8.
+
+Empirical null estimates are based on 5000 iterations with a burnin-period of 2000.
+null device 
+          1 
+null device 
+          1 

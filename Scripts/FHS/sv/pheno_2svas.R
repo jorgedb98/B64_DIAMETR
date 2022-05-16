@@ -114,6 +114,7 @@ mod <- paste("model.matrix(~", x)
 if (!is.null(num_covariates)) {for (covi in num_covariates) mod = paste(mod, "+", covi) }
 if (!is.null(chr_covariates)) {for (covi in chr_covariates) mod = paste(mod, "+", "factor(", covi, ")") }
 mod <- paste(mod, ",data=pheno)", sep="")
+print("aqui")
 
 mod0 <- NULL
 if (!is.null(num_covariates)) {for (covi in num_covariates) mod0 = paste(mod0, "+", covi) }

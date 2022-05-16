@@ -1,7 +1,10 @@
-rm(list=ls())
+rm(list = ls())
 
-modelo = commandArgs()[6]
-##Manifiesto de Illumina EPIC
+# Load the library
+library(qqman)
+library(ggrepel)
+library(ggplot2)
+library(dplyr)
 mani <- read.csv("/home/jdominguez1/manifest450k.csv", 
                  skip=7, 
                  stringsAsFactors=F, 
@@ -11,62 +14,6 @@ mani <- read.csv("/home/jdominguez1/manifest450k.csv",
 
 rownames(mani) <- mani$IlmnID
 
-##Funciones
-manhattan <- function(dataframe, colors=c("gray10", "gray50"), ymax="max", limitchromosomes=1:23, genomewideline=-log10(0.05/length(cpg)), annotate=NULL, ...) {
-  
-  d=dataframe
-  if (!("CHR" %in% names(d) & "BP" %in% names(d) & "P" %in% names(d))) stop("Make sure your data frame contains columns CHR, BP, and P")
-  
-  if (any(limitchromosomes)) d=d[d$CHR %in% limitchromosomes, ]
-  d=subset(na.omit(d[order(d$CHR, d$BP), ]), (P>0 & P<=1)) # remove na's, sort, and keep only 0<P<=1
-  d$logp = -log10(d$P)
-  d$pos=NA
-  ticks=NULL
-  lastbase=0
-  colors <- rep(colors,max(d$CHR))[1:max(d$CHR)]
-  if (ymax=="max") ymax<-ceiling(max(d$logp))
-  if (ymax<8) ymax<-8
-  
-  numchroms=length(unique(d$CHR))
-  if (numchroms==1) {
-    d$pos=d$BP
-    ticks=floor(length(d$pos))/2+1
-  } else {
-    for (i in unique(d$CHR)) {
-      if (i==1) {
-        d[d$CHR==i, ]$pos=d[d$CHR==i, ]$BP
-      } else {
-        lastbase=lastbase+tail(subset(d,CHR==i-1)$BP, 1)
-        d[d$CHR==i, ]$pos=d[d$CHR==i, ]$BP+lastbase
-      }
-      ticks=c(ticks, d[d$CHR==i, ]$pos[floor(length(d[d$CHR==i, ]$pos)/2)+1])
-    }
-  }
-  
-  if (numchroms==1) {
-    with(d, plot(pos, logp, ylim=c(0,ymax), ylab=expression(-log[10](italic(p))), xlab=paste("Chromosome",unique(d$CHR),"position"), ...))
-  }  else {
-    with(d, plot(pos, logp, ylim=c(0,ymax), ylab=expression(-log[10](italic(p))), xlab="Chromosome", xaxt="n", type="n", ...))
-    axis(1, at=ticks, lab=unique(d$CHR), ...)
-    icol=1
-    for (i in unique(d$CHR)) {
-      with(d[d$CHR==i, ],points(pos, logp, col=colors[icol], ...))
-      icol=icol+1
-    }
-  }
-  
-  if (!is.null(annotate)) {
-    d.annotate=d[which(d$SNP %in% annotate), ]
-    with(d.annotate, points(pos, logp, col="green3", ...)) 
-  }
-  
-  
-  if (genomewideline) abline(h=genomewideline, col="red")
-}
-
-#Resultados EWAS
-
-#Modelo 1
 res1 = get(load("/home/jdominguez1/B64_DIAMETR/Scripts/REGICOR/sv/450k/hpdi/model_2sva_hpdi.RData"))
 
 #Lista de CpGs analizados
@@ -79,9 +26,11 @@ SNP <- cpg
 CHR <- as.character(mani1$CHR)
 BP <- mani1$MAPINFO
 P <- res1$Pvalue
-manh1 <- as.data.frame(cbind(SNP,CHR,BP,P))
+Coefficient <- res1$Coefficient
+SE <- res1$SE
+manh1 <- as.data.frame(cbind(SNP,CHR,BP,Coefficient,SE,P))
 
-#Cromosomas sexuales regicor no tiene informacion
+# #Cromosomas sexuales
 # manh1 <- manh1[-which(manh1$CHR=="X"),]
 # manh1 <- manh1[-which(manh1$CHR=="Y"),]
 
@@ -92,24 +41,71 @@ manh1$SNP <- as.character(manh1$SNP)
 manh1$CHR <- as.numeric(manh1$CHR)  
 manh1$BP <- as.numeric(as.character(manh1$BP))
 manh1$P <- as.numeric(as.character(manh1$P))
+manh1$Coefficient <- as.numeric(as.character(manh1$Coefficient))
+manh1$SE <- as.numeric(as.character(manh1$SE))
 
+# First of all, we need to compute the cumulative position of SNP.
 
-#Manhattan Plot:
-png("/home/jdominguez1/B64_DIAMETR/Scripts/REGICOR/sv/450k/hpdi/manhattanplot_bacon.png", 
-    height=3600, 
-    width=6000, 
-    res=600,
-    units = "px")
+don <- manh1 %>% 
+  
+  # Compute chromosome size
+  group_by(CHR) %>% 
+  summarise(chr_len=max(BP)) %>% 
+  
+  # Calculate cumulative position of each chromosome
+  mutate(tot=cumsum(chr_len)-chr_len) %>%
+  select(-chr_len) %>%
+  
+  # Add this info to the initial dataset
+  left_join(manh1, ., by=c("CHR"="CHR")) %>%
+  
+  # Add a cumulative position of each SNP
+  arrange(CHR, BP) %>%
+  mutate( BPcum=BP+tot) %>%
 
-###Añadir línea de corte del pval=10-5
-manhattan(manh1, 
-          genomewideline=-log10(1E-5))
+  # Add highlight and annotation information
+  mutate( is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>%
+  mutate( is_annotate=ifelse(-log10(P)>4, "yes", "no")) 
 
-###Añadir línea de corte del pval corregido por Bonferroni
-abline(h=-log10(0.05/length(cpg)), 
-       col="black",
-       lty=2)
-title(main = "Manhattan plot REGICOR 450k hpdi")
+# Then we need to prepare the X axis. Indeed we do not want to display the cumulative position of SNP in bp, but just show the chromosome name instead.
 
-dev.off()
+axisdf = don %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
 
+# Ready to make the plot using ggplot2:
+  
+p <- ggplot(don, aes(x=BPcum, y=-log10(P))) +
+  geom_hline(yintercept=5, color = "red") +
+  geom_hline(yintercept=7, linetype="dashed", color = "#696969") +
+  
+  # Show all points
+  geom_point( aes(color=as.factor(CHR)), alpha=0.8, size=1.3) +
+  scale_color_manual(values = rep(c("grey", "black"), 22 )) +
+  
+  # custom X axis:
+  scale_x_continuous( label = axisdf$CHR, breaks= axisdf$center ) +
+  scale_y_continuous( label = c(2,4,6,8,10), breaks= c(2,4,6,8,10), expand = c(0,0) ) +     # remove space between plot area and x axis
+  
+  # Add highlighted points
+  # geom_point(data=subset(don, P<0.00001), size=1, scale_color_manual(values = rep(c("grey", "black"), 22 ))) +
+  
+  # Add label using ggrepel to avoid overlapping
+  geom_label_repel( data=subset(don, P<0.00001), aes(label=SNP), size=3,min.segment.length = 0,
+                    fill = alpha(c("white"),0.5)) +
+  
+  # Custom the theme:
+  theme_minimal() +
+  theme( 
+    legend.position="none",
+    panel.border = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.text.x=element_text(angle = 90,vjust = 0.2) 
+  ) +
+  ylab(bquote(-log[10](PValue))) + 
+  xlab("Chromosome") +
+  labs(title = "Manhattan Plot REGICOR 450k hpdi") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+ ggsave(plot = p, filename = "~/B64_DIAMETR/Scripts/REGICOR/sv/450k/hpdi/manhattanplot.png")  
+ save(manh1, file="~/B64_DIAMETR/Scripts/REGICOR/sv/450k/hpdi/model_2sva_noxy_hpdi.RData")
+ 

@@ -11,9 +11,9 @@ print(results)
 
 print("merging files")
 
-overall_merge = get(load(paste(results,"model_7sva_hpdi_1.RData", sep="/")))
+overall_merge = get(load(paste(results,"model_6sva_hpdi_1.RData", sep="/")))
 for(i in 2:82){
-  current <- paste(results,"/","model_7sva_hpdi_",i,".RData",sep="")
+  current <- paste(results,"/","model_6sva_hpdi_",i,".RData",sep="")
   matrixx <- get(load(current))
   overall_merge <- rbind(overall_merge, matrixx)
   rm(matrixx)

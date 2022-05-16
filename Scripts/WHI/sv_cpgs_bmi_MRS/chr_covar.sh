@@ -1,0 +1,2 @@
+SMOKING
+RACE

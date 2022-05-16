@@ -3,7 +3,7 @@
 #SBATCH -J hpdi_whi_model
 #SBATCH -o logs/hpdi_whi_model.out
 #SBATCH -e logs/hpdi_whi_model.err
-#SBATCH -p long
+#SBATCH -p fast
 
 for i in {1..48}
 do

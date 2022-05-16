@@ -41,9 +41,7 @@ attenuation_dashf <- attenuation_dashf %>%
   mutate(`Attenuation Random` = 100*((`Random Coefficient M1` - `Random Coefficient M2`)/`Random Coefficient M1`)) %>%
   mutate(`Attenuation Fixed` = 100*((`Fixed Coefficient M1` - `Fixed Coefficient M2`)/`Fixed Coefficient M1`))
 
-attenuation_dashf_sig <- attenuation_dashf[ attenuation_dashf$`Attenuation Fixed`<=10,] # Not including <0 Attenuation because
-                                                                                        # negative A means higher magnitude of B
-                                                                                        # in model 2.
+attenuation_dashf_sig <- attenuation_dashf[ attenuation_dashf$`Attenuation Fixed`<=10,]
 
 save(attenuation_dashf, file="./Attenuation/dashf/dashf_attenuation_2.RData")
 write.table(attenuation_dashf, file="./Attenuation/dashf/dashf_attenuation_2.csv", sep=",", col.names = T, row.names = F, quote = F)
@@ -84,9 +82,7 @@ attenuation_hpdi <- attenuation_hpdi %>%
   mutate(`Attenuation Random` = 100*((`Random Coefficient M1` - `Random Coefficient M2`)/`Random Coefficient M1`)) %>%
   mutate(`Attenuation Fixed` = 100*((`Fixed Coefficient M1` - `Fixed Coefficient M2`)/`Fixed Coefficient M1`))
 
-attenuation_hpdi_sig <- attenuation_hpdi[attenuation_hpdi$`Attenuation Fixed`<=10,] # Not including <0 Attenuation because
-                                                                                    # negative A means higher magnitude of B
-                                                                                    # in model 2.
+attenuation_hpdi_sig <- attenuation_hpdi[attenuation_hpdi$`Attenuation Fixed`<=10,]
 
 
 save(attenuation_hpdi, file="./Attenuation/hpdi/hpdi_attenuation_2.RData")
@@ -173,3 +169,5 @@ bonferroni <- get(load("/home/jdominguez1/B64_DIAMETR/Scripts/Meta_Airwave_ICL/t
 attenuation_bonfe <- all_attenuation_sig_clean[all_attenuation_sig_clean$SNP%in%all_cpgs_clean_bonferroni$SNP,]
 save(attenuation_bonfe, file="Attenuation/tabla_bonfe.RData")
 write.table(attenuation_bonfe, file="Attenuation/tabla_bonfe.csv", quote = F, col.names = T, row.names = F, sep=",")
+
+sort(unique(attenuation_bonfe$SNP)) # "cg00711496" "cg02079413" "cg02650017" "cg13518625" "cg18181703" "cg23900905"

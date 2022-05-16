@@ -77,6 +77,7 @@ if(identical(pheno$sample_name, rownames(mt_val))==F)
 
 print("Dims de mt_val")
 print(dim(mt_val))
+head(mt_val)
 
 print("Pheno variables")
 pheno <- pheno[c(num_covariates, chr_covariates, "sample_name", x)]
@@ -116,8 +117,10 @@ print(dim(mt_val))
 print(dim(na.omit(mt_val)))
 print(dim(pheno))
 print(dim(na.omit(pheno)))
-print(str(pheno))
 
+pheno$sexe <- as.factor(pheno$sexe)
+pheno$smoke_6_b <- as.factor(pheno$smoke_6_b)
+print(str(pheno))
 print("Linear regresion - EWAS")
 
 res <- mclapply(cpg, function(i){

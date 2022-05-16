@@ -1,0 +1,11 @@
+Loading required package: ggplot2
+Loading required package: BiocParallel
+Loading required package: ellipse
+
+Attaching package: ‘ellipse’
+
+The following object is masked from ‘package:graphics’:
+
+    pairs
+
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
